@@ -1,13 +1,13 @@
 import express from "express";
 import { config } from "dotenv";
-import router from "./routes/routes";
+import router from "./routes/aniwatch/routes";
 
-config();
+config(); // dotenv
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
 
-router.get("/health", (_req, res) => {
+app.get("/health", (_req, res) => {
   res.sendStatus(200);
 });
 
