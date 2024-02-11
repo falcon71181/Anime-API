@@ -1,14 +1,14 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
 import { AxiosError } from "axios";
-import { Top10Anime } from "../../types/anime";
+import { Top10Anime } from "../../types/aniwatch/anime";
 
 export const extract_top10_animes = (
   $: CheerioAPI,
   periodType: SelectorType,
 ): Top10Anime[] => {
   try {
-    const animes: Array<Top10Anime> = [];
+    const animes: Top10Anime[] = [];
     const selectors = `#top-viewed-${periodType} ul li`;
 
     $(selectors).each((_index, element) => {

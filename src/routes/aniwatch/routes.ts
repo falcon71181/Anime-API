@@ -1,9 +1,9 @@
 import { Router, type IRouter } from "express";
-import { getHomeInfo } from "../../controllers/aniwatch/homeController";
+import { getHomeInfo } from "../../controllers/aniwatch/controllers";
 
-const router: IRouter = Router();
+const aniwatch_router: IRouter = Router();
 
 // /aniwatch/
-router.get("/", getHomeInfo);
+aniwatch_router.get("/", getHomeInfo);
 
-export default router;
+export default aniwatch_router;

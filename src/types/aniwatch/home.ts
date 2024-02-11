@@ -1,9 +1,11 @@
-import { Top10Anime } from "../anime";
+import { Top10Anime } from "./anime";
+import { SpotLightAnime } from "./anime";
 
 export interface ScrapedHomePage {
+  spotLightAnimes: SpotLightAnime[];
   trendingAnimes: {
-    day: Array<Top10Anime>;
-    week: Array<Top10Anime>;
-    month: Array<Top10Anime>;
+    day: Top10Anime[];
+    week: Top10Anime[];
+    month: Top10Anime[];
   };
 }

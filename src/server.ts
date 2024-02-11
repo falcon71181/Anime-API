@@ -1,6 +1,6 @@
 import express from "express";
 import { config } from "dotenv";
-import router from "./routes/aniwatch/routes";
+import { aniwatch_router } from "./routes/routes";
 
 config(); // dotenv
 
@@ -11,7 +11,8 @@ app.get("/health", (_req, res) => {
   res.sendStatus(200);
 });
 
-app.use("/aniwatch", router);
+// AniWatch.to
+app.use("/aniwatch", aniwatch_router);
 
 app.listen(PORT, () => {
   console.log(`⚔️  API started ON PORT : ${PORT} @ STARTED  ⚔️`);
