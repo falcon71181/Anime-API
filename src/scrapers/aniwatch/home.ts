@@ -7,13 +7,20 @@ import {
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
-import { extract_top10_animes } from "../../extracters/aniwatch/top10_animes";
-import { Top10AnimeTimePeriod } from "../../types/anime";
-import { ScrapedHomePage } from "../../types/aniwatch/home";
+import {
+  extract_top10_animes,
+  extract_spotlight_animes,
+} from "../../extracters/aniwatch/extracters";
+import {
+  Top10AnimeTimePeriod,
+  ScrapedHomePage,
+} from "../../types/aniwatch/anime";
 
-export const scrapeHome = async (): Promise<ScrapedHomePage | HttpError> => {
+export const scrapeHomePage = async (): Promise<
+  ScrapedHomePage | HttpError
+> => {
   const res: ScrapedHomePage = {
-    // spotLightAnimes: [],
+    spotLightAnimes: [],
     // trendingAnimes: [],
     trendingAnimes: {
       day: [],
@@ -48,7 +55,7 @@ export const scrapeHome = async (): Promise<ScrapedHomePage | HttpError> => {
     // res.trendingAnimes = extractTrendingAnime($, trendingAnimeSelectors);
     // res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
     // res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
-    // res.spotLightAnimes = extractSpotLightAnime($, spotLightSelectors);
+    res.spotLightAnimes = extract_spotlight_animes($, spotLightSelectors);
     // res.genres = extractGenreList($, genresSelectors);
 
     $(top10Selectors).each((_index, element) => {
