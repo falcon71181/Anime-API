@@ -38,6 +38,11 @@ interface TopAiringAnime {
   img: string | null;
 }
 
+interface TopUpcomingAnime extends Anime {
+  duration: string | null;
+  rated: boolean | null;
+}
+
 export {
   ScrapedHomePage,
   Anime,
@@ -46,4 +51,5 @@ export {
   SpotLightAnime,
   TrendingAnime,
   TopAiringAnime,
+  TopUpcomingAnime,
 };

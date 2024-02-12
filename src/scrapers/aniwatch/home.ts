@@ -12,6 +12,7 @@ import {
   extract_spotlight_animes,
   extract_trending_animes,
   extract_top_airing_animes,
+  extract_top_upcoming_animes,
 } from "../../extracters/aniwatch/extracters";
 import {
   Top10AnimeTimePeriod,
@@ -30,7 +31,7 @@ export const scrapeHomePage = async (): Promise<
       month: [],
     },
     topAiringAnimes: [],
-    // topUpcomingAnimes: [],
+    topUpcomingAnimes: [],
     // genres: [],
   };
   try {
@@ -56,7 +57,10 @@ export const scrapeHomePage = async (): Promise<
 
     res.trendingAnimes = extract_trending_animes($, trendingAnimeSelectors);
     res.topAiringAnimes = extract_top_airing_animes($, topAiringSelectors);
-    // res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
+    res.topUpcomingAnimes = extract_top_upcoming_animes(
+      $,
+      topUpcomingSelectors,
+    );
     res.spotLightAnimes = extract_spotlight_animes($, spotLightSelectors);
     // res.genres = extractGenreList($, genresSelectors);
 

@@ -3,6 +3,7 @@ import {
   SpotLightAnime,
   TrendingAnime,
   TopAiringAnime,
+  TopUpcomingAnime,
 } from "./anime";
 
 export interface ScrapedHomePage {
@@ -14,4 +15,5 @@ export interface ScrapedHomePage {
     month: Top10Anime[];
   };
   topAiringAnimes: TopAiringAnime[];
+  topUpcomingAnimes: TopUpcomingAnime[];
 }
