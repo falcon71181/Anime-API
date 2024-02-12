@@ -12,18 +12,24 @@ interface Anime {
 }
 
 interface Top10Anime extends Anime {
-  rank: Number | null;
+  rank: number | null;
 }
 
 type Top10AnimeTimePeriod = "day" | "week" | "month";
 
 interface SpotLightAnime extends Anime {
-  rank: Number | null;
-  duration: String | null;
-  category: String | null;
-  releasedDay: String | null;
-  quality: String | null;
-  description: String | null;
+  rank: number | null;
+  duration: string | null;
+  category: string | null;
+  releasedDay: string | null;
+  quality: string | null;
+  description: string | null;
+}
+
+interface TrendingAnime {
+  id: string | null;
+  name: string | null;
+  img: string | null;
 }
 
 export {
@@ -32,4 +38,5 @@ export {
   Top10Anime,
   Top10AnimeTimePeriod,
   SpotLightAnime,
+  TrendingAnime,
 };

@@ -10,6 +10,7 @@ import createHttpError, { HttpError } from "http-errors";
 import {
   extract_top10_animes,
   extract_spotlight_animes,
+  extract_trending_animes,
 } from "../../extracters/aniwatch/extracters";
 import {
   Top10AnimeTimePeriod,
@@ -21,7 +22,7 @@ export const scrapeHomePage = async (): Promise<
 > => {
   const res: ScrapedHomePage = {
     spotLightAnimes: [],
-    // trendingAnimes: [],
+    trendingAnimes: [],
     top10Animes: {
       day: [],
       week: [],
@@ -52,7 +53,7 @@ export const scrapeHomePage = async (): Promise<
     const genresSelectors =
       "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
-    // res.trendingAnimes = extractTrendingAnime($, trendingAnimeSelectors);
+    res.trendingAnimes = extract_trending_animes($, trendingAnimeSelectors);
     // res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
     // res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
     res.spotLightAnimes = extract_spotlight_animes($, spotLightSelectors);
@@ -80,7 +81,7 @@ export const scrapeHomePage = async (): Promise<
     return res;
   } catch (err) {
     ////////////////////////////////////////////////////////////////
-    console.error("Error in scrapeHome:", err); // for TESTING//
+    console.error("Error in scrapeHomePage:", err); // for TESTING//
     ////////////////////////////////////////////////////////////////
 
     if (err instanceof AxiosError) {
@@ -88,8 +89,8 @@ export const scrapeHomePage = async (): Promise<
         err?.response?.status || 500,
         err?.response?.statusText || "Something went wrong",
       );
+    } else {
+      throw createHttpError.InternalServerError("Internal server error");
     }
-
-    throw err;
   }
 };
