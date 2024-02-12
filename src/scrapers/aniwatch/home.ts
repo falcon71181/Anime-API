@@ -22,7 +22,7 @@ export const scrapeHomePage = async (): Promise<
   const res: ScrapedHomePage = {
     spotLightAnimes: [],
     // trendingAnimes: [],
-    trendingAnimes: {
+    top10Animes: {
       day: [],
       week: [],
       month: [],
@@ -65,15 +65,15 @@ export const scrapeHomePage = async (): Promise<
         ?.pop()
         ?.trim() as Top10AnimeTimePeriod;
       if (periodType === "day") {
-        res.trendingAnimes.day = extract_top10_animes($, periodType);
+        res.top10Animes.day = extract_top10_animes($, periodType);
         return;
       }
       if (periodType === "week") {
-        res.trendingAnimes.week = extract_top10_animes($, periodType);
+        res.top10Animes.week = extract_top10_animes($, periodType);
         return;
       }
       if (periodType === "month") {
-        res.trendingAnimes.month = extract_top10_animes($, periodType);
+        res.top10Animes.month = extract_top10_animes($, periodType);
       }
     });
 

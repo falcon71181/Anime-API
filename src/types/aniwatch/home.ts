@@ -3,7 +3,7 @@ import { SpotLightAnime } from "./anime";
 
 export interface ScrapedHomePage {
   spotLightAnimes: SpotLightAnime[];
-  trendingAnimes: {
+  top10Animes: {
     day: Top10Anime[];
     week: Top10Anime[];
     month: Top10Anime[];
