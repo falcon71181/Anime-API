@@ -16,4 +16,5 @@ export interface ScrapedHomePage {
   };
   topAiringAnimes: TopAiringAnime[];
   topUpcomingAnimes: TopUpcomingAnime[];
+  genres: string[];
 }

@@ -13,6 +13,7 @@ import {
   extract_trending_animes,
   extract_top_airing_animes,
   extract_top_upcoming_animes,
+  extract_genre_list,
 } from "../../extracters/aniwatch/extracters";
 import {
   Top10AnimeTimePeriod,
@@ -32,7 +33,7 @@ export const scrapeHomePage = async (): Promise<
     },
     topAiringAnimes: [],
     topUpcomingAnimes: [],
-    // genres: [],
+    genres: [],
   };
   try {
     const mainPage = await axios.get(URLs.HOME, {
@@ -62,7 +63,7 @@ export const scrapeHomePage = async (): Promise<
       topUpcomingSelectors,
     );
     res.spotLightAnimes = extract_spotlight_animes($, spotLightSelectors);
-    // res.genres = extractGenreList($, genresSelectors);
+    res.genres = extract_genre_list($, genresSelectors);
 
     $(top10Selectors).each((_index, element) => {
       const periodType = $(element)
