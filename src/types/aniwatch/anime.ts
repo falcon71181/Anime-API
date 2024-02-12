@@ -1,9 +1,12 @@
 import { ScrapedHomePage } from "./home";
 
-interface Anime {
+interface MinimalAnime {
   id: string | null;
   name: string | null;
   img: string | null;
+}
+
+interface Anime extends MinimalAnime {
   episodes: {
     eps: number | null;
     sub: number | null;
@@ -26,17 +29,8 @@ interface SpotLightAnime extends Anime {
   description: string | null;
 }
 
-interface TrendingAnime {
-  id: string | null;
-  name: string | null;
-  img: string | null;
-}
-
-interface TopAiringAnime {
-  id: string | null;
-  name: string | null;
-  img: string | null;
-}
+type TopAiringAnime = MinimalAnime;
+type TrendingAnime = MinimalAnime;
 
 interface TopUpcomingAnime extends Anime {
   duration: string | null;
