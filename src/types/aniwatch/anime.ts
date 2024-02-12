@@ -32,6 +32,12 @@ interface TrendingAnime {
   img: string | null;
 }
 
+interface TopAiringAnime {
+  id: string | null;
+  name: string | null;
+  img: string | null;
+}
+
 export {
   ScrapedHomePage,
   Anime,
@@ -39,4 +45,5 @@ export {
   Top10AnimeTimePeriod,
   SpotLightAnime,
   TrendingAnime,
+  TopAiringAnime,
 };
