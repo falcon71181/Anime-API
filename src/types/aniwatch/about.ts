@@ -1,5 +1,6 @@
-import { AboutAnimeInfo } from "./anime";
+import { AboutAnimeInfo, ExtraAboutAnimeInfo } from "./anime";
 
 export interface ScrapedAboutPage {
-  info: AboutAnimeInfo[];
+  info: AboutAnimeInfo;
+  moreInfo: ExtraAboutAnimeInfo;
 }

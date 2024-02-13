@@ -48,6 +48,8 @@ interface AboutAnimeInfo extends Anime {
   description: string | null;
 }
 
+type ExtraAboutAnimeInfo = Record<string, string | string[]>;
+
 export {
   ScrapedHomePage,
   ScrapedAboutPage,
@@ -60,4 +62,5 @@ export {
   TopUpcomingAnime,
   LatestAnimeEpisode,
   AboutAnimeInfo,
+  ExtraAboutAnimeInfo,
 };
