@@ -47,6 +47,21 @@ console.log(data);
     },
     {...},
   ],
+  latestEpisodes: [
+    {
+      id: string,
+      name: string,
+      img: string,
+      episodes: {
+        eps: number,
+        sub: number,
+        dub: number,
+      },
+      duration: string,
+      rated: boolean,
+    },
+    {...},
+  ],
   top10Animes: {
     day: [
       {
