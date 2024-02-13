@@ -6,6 +6,7 @@ import {
 } from "../../utils/aniwatch/constants";
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
+import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 import {
   extract_top10_animes,
@@ -27,7 +28,7 @@ export const scrapeHomePage = async (): Promise<
   const res: ScrapedHomePage = {
     spotLightAnimes: [],
     trendingAnimes: [],
-    LatestEpisodes: [],
+    latestEpisodes: [],
     top10Animes: {
       day: [],
       week: [],
@@ -45,23 +46,24 @@ export const scrapeHomePage = async (): Promise<
         Accept: ACCEPT_HEADER,
       },
     });
-    const $ = load(mainPage.data);
-    const trendingAnimeSelectors =
+    const $: CheerioAPI = load(mainPage.data);
+    const trendingAnimeSelectors: SelectorType =
       "#anime-trending #trending-home .swiper-wrapper .swiper-slide";
-    const top10Selectors =
+    const top10Selectors: SelectorType =
       '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
-    const latestEpisodesSelectors =
+    const latestEpisodesSelectors: SelectorType =
       "#main-content .block_area_home:nth-of-type(1) .tab-content .film_list-wrap .flw-item";
-    const topAiringSelectors =
+    const topAiringSelectors: SelectorType =
       "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
-    const topUpcomingSelectors =
+    const topUpcomingSelectors: SelectorType =
       "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
-    const spotLightSelectors = "#slider .swiper-wrapper .swiper-slide";
-    const genresSelectors =
+    const spotLightSelectors: SelectorType =
+      "#slider .swiper-wrapper .swiper-slide";
+    const genresSelectors: SelectorType =
       "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
     res.trendingAnimes = extract_trending_animes($, trendingAnimeSelectors);
-    res.LatestEpisodes = extract_latest_episodes($, latestEpisodesSelectors);
+    res.latestEpisodes = extract_latest_episodes($, latestEpisodesSelectors);
     res.topAiringAnimes = extract_top_airing_animes($, topAiringSelectors);
     res.topUpcomingAnimes = extract_top_upcoming_animes(
       $,
