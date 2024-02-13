@@ -4,6 +4,7 @@ import {
   TrendingAnime,
   TopAiringAnime,
   TopUpcomingAnime,
+  LatestAnimeEpisode,
 } from "./anime";
 
 export interface ScrapedHomePage {
@@ -14,6 +15,7 @@ export interface ScrapedHomePage {
     week: Top10Anime[];
     month: Top10Anime[];
   };
+  LatestEpisodes: LatestAnimeEpisode[];
   topAiringAnimes: TopAiringAnime[];
   topUpcomingAnimes: TopUpcomingAnime[];
   genres: string[];

@@ -11,6 +11,7 @@ import {
   extract_top10_animes,
   extract_spotlight_animes,
   extract_trending_animes,
+  extract_latest_episodes,
   extract_top_airing_animes,
   extract_top_upcoming_animes,
   extract_genre_list,
@@ -26,6 +27,7 @@ export const scrapeHomePage = async (): Promise<
   const res: ScrapedHomePage = {
     spotLightAnimes: [],
     trendingAnimes: [],
+    LatestEpisodes: [],
     top10Animes: {
       day: [],
       week: [],
@@ -48,6 +50,8 @@ export const scrapeHomePage = async (): Promise<
       "#anime-trending #trending-home .swiper-wrapper .swiper-slide";
     const top10Selectors =
       '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
+    const latestEpisodesSelectors =
+      "#main-content .block_area_home:nth-of-type(1) .tab-content .film_list-wrap .flw-item";
     const topAiringSelectors =
       "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
     const topUpcomingSelectors =
@@ -57,6 +61,7 @@ export const scrapeHomePage = async (): Promise<
       "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
     res.trendingAnimes = extract_trending_animes($, trendingAnimeSelectors);
+    res.LatestEpisodes = extract_latest_episodes($, latestEpisodesSelectors);
     res.topAiringAnimes = extract_top_airing_animes($, topAiringSelectors);
     res.topUpcomingAnimes = extract_top_upcoming_animes(
       $,

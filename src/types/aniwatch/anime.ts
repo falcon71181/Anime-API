@@ -38,6 +38,8 @@ interface TopUpcomingAnime extends Anime {
   rated: boolean | null;
 }
 
+type LatestAnimeEpisode = TopUpcomingAnime;
+
 interface AboutAnimeInfo extends Anime {
   rating: string | null;
   category: string | null;
@@ -56,5 +58,6 @@ export {
   TrendingAnime,
   TopAiringAnime,
   TopUpcomingAnime,
+  LatestAnimeEpisode,
   AboutAnimeInfo,
 };
