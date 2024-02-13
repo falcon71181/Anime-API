@@ -10,6 +10,7 @@ import createHttpError, { HttpError } from "http-errors";
 import {
   extract_about_info,
   extract_extra_about_info,
+  extract_anime_seasons_info,
 } from "../../extracters/aniwatch/extracters";
 import { ScrapedAboutPage, AboutAnimeInfo } from "../../types/aniwatch/anime";
 
@@ -36,7 +37,7 @@ export const scrapeAboutPage = async (
     info: defaultInfo, // need to improve it in future
     moreInfo: {},
     // genre: [],
-    // seasons: [],
+    seasons: [],
     // relatedAnimes: [],
     // mostPopularAnimes: [],
   };
@@ -61,7 +62,7 @@ export const scrapeAboutPage = async (
     res.info = extract_about_info($, selectors);
     res.moreInfo = extract_extra_about_info($, extraInfoSelector);
     // res.genre = extractAboutGenre($, animeGenreSelector);
-    // res.seasons = extractSeasonsInfo($, seasonsSelectors);
+    res.seasons = extract_anime_seasons_info($, seasonsSelectors);
     // res.relatedAnimes = extractRelatedAnimes($, relatedAnimesSelectors);
 
     return res;

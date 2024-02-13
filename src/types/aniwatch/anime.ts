@@ -35,7 +35,7 @@ type TrendingAnime = MinimalAnime;
 
 interface TopUpcomingAnime extends Anime {
   duration: string | null;
-  rated: boolean | null;
+  rated: boolean | false;
 }
 
 type LatestAnimeEpisode = TopUpcomingAnime;
@@ -50,6 +50,11 @@ interface AboutAnimeInfo extends Anime {
 
 type ExtraAboutAnimeInfo = Record<string, string | string[]>;
 
+interface AnimeSeasonsInfo extends MinimalAnime {
+  seasonTitle: string | null;
+  isCurrent: boolean | false;
+}
+
 export {
   ScrapedHomePage,
   ScrapedAboutPage,
@@ -63,4 +68,5 @@ export {
   LatestAnimeEpisode,
   AboutAnimeInfo,
   ExtraAboutAnimeInfo,
+  AnimeSeasonsInfo,
 };

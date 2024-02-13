@@ -7,6 +7,7 @@ import { extract_latest_episodes } from "./latest_anime_episodes";
 import { extract_genre_list } from "./genre_list";
 import { extract_about_info } from "./about_anime";
 import { extract_extra_about_info } from "./about_extra_anime";
+import { extract_anime_seasons_info } from "./anime_seasons_info";
 
 export {
   extract_spotlight_animes,
@@ -18,4 +19,5 @@ export {
   extract_genre_list,
   extract_about_info,
   extract_extra_about_info,
+  extract_anime_seasons_info,
 };
