@@ -3,30 +3,31 @@ import createHttpError from "http-errors";
 import { AxiosError } from "axios";
 import { AboutAnimeInfo } from "../../types/aniwatch/anime";
 
+//NEED TO IMPROVE IT IN FUTURE
 export const extract_about_info = (
   $: CheerioAPI,
   selectors: SelectorType,
-): AboutAnimeInfo[] => {
+): AboutAnimeInfo => {
   try {
-    const info: AboutAnimeInfo[] = [];
+    let info: AboutAnimeInfo | undefined;
 
     $(selectors).each((_index, _element) => {
       const animeID =
         $(selectors)
-          ?.find(".anisc-detail .film-buttons a.btn-play")
-          ?.attr("href")
+          .find(".anisc-detail .film-buttons a.btn-play")
+          .attr("href")
           ?.split("/")
           ?.pop() || null;
       const animeNAME =
         $(selectors)
-          ?.find(".anisc-detail .film-name.dynamic-name")
-          ?.text()
-          ?.trim() ?? "UNKNOWN ANIME";
+          .find(".anisc-detail .film-name.dynamic-name")
+          .text()
+          .trim() ?? "UNKNOWN ANIME";
       const animeIMG =
         $(selectors)
-          ?.find(".film-poster .film-poster-img")
+          .find(".film-poster .film-poster-img")
           ?.attr("src")
-          ?.trim() || null;
+          ?.trim() ?? "UNKNOWN";
       const animeRATING =
         $(`${selectors} .film-stats .tick .tick-pg`)?.text()?.trim() || null;
       const animeQUALITY =
@@ -57,13 +58,13 @@ export const extract_about_info = (
           ?.pop() || null;
       const animeDESCRIPTION =
         $(selectors)
-          ?.find(".anisc-detail .film-description .text")
+          .find(".anisc-detail .film-description .text")
           ?.text()
           ?.split("[")
           ?.shift()
           ?.trim() ?? "UNKNOW ANIME DESCRIPTION";
 
-      info.push({
+      info = {
         id: animeID,
         name: animeNAME,
         img: animeIMG,
@@ -77,8 +78,27 @@ export const extract_about_info = (
         quality: animeQUALITY,
         duration: duration,
         description: animeDESCRIPTION,
-      });
+      };
     });
+
+    if (info === undefined) {
+      info = {
+        id: null,
+        name: null,
+        img: null,
+        rating: null,
+        episodes: {
+          eps: null,
+          sub: null,
+          dub: null,
+        },
+        category: null,
+        quality: null,
+        duration: null,
+        description: null,
+      };
+    }
+
     return info;
   } catch (err) {
     ///////////////////////////////////////////////////////////////////

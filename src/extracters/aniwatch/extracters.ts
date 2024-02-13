@@ -6,6 +6,7 @@ import { extract_top_upcoming_animes } from "./top_upcoming_animes";
 import { extract_latest_episodes } from "./latest_anime_episodes";
 import { extract_genre_list } from "./genre_list";
 import { extract_about_info } from "./about_anime";
+import { extract_extra_about_info } from "./about_extra_anime";
 
 export {
   extract_spotlight_animes,
@@ -16,4 +17,5 @@ export {
   extract_top_upcoming_animes,
   extract_genre_list,
   extract_about_info,
+  extract_extra_about_info,
 };

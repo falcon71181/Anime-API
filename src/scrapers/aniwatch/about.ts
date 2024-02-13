@@ -7,15 +7,34 @@ import {
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
-import { extract_about_info } from "../../extracters/aniwatch/extracters";
-import { ScrapedAboutPage } from "../../types/aniwatch/anime";
+import {
+  extract_about_info,
+  extract_extra_about_info,
+} from "../../extracters/aniwatch/extracters";
+import { ScrapedAboutPage, AboutAnimeInfo } from "../../types/aniwatch/anime";
 
 export const scrapeAboutPage = async (
   id: string,
 ): Promise<ScrapedAboutPage | HttpError> => {
+  const defaultInfo: AboutAnimeInfo = {
+    id: null,
+    name: "UNKNOWN ANIME",
+    img: null,
+    rating: null,
+    episodes: {
+      eps: null,
+      sub: null,
+      dub: null,
+    },
+    category: null,
+    quality: null,
+    duration: null,
+    description: "UNKNOW ANIME DESCRIPTION",
+  };
+
   const res: ScrapedAboutPage = {
-    info: [],
-    // moreinfo: [],
+    info: defaultInfo, // need to improve it in future
+    moreInfo: {},
     // genre: [],
     // seasons: [],
     // relatedAnimes: [],
@@ -32,7 +51,7 @@ export const scrapeAboutPage = async (
 
   const $ = load(mainPage.data);
   const selectors = "#ani_detail .container .anis-content";
-  const extraInfoSelector = `${selectors} .anisc-info .item-title`;
+  const extraInfoSelector = `${selectors} .anisc-info`;
   const animeGenreSelector = `${selectors} .anisc-info .item-list a`;
   const seasonsSelectors = ".os-list a.os-item";
   const relatedAnimesSelectors =
@@ -40,7 +59,7 @@ export const scrapeAboutPage = async (
 
   try {
     res.info = extract_about_info($, selectors);
-    // res.moreinfo = extractExtraAboutInfo($, extraInfoSelector);
+    res.moreInfo = extract_extra_about_info($, extraInfoSelector);
     // res.genre = extractAboutGenre($, animeGenreSelector);
     // res.seasons = extractSeasonsInfo($, seasonsSelectors);
     // res.relatedAnimes = extractRelatedAnimes($, relatedAnimesSelectors);
