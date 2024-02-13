@@ -1,4 +1,5 @@
 import { ScrapedHomePage } from "./home";
+import { ScrapedAboutPage } from "./about";
 
 interface MinimalAnime {
   id: string | null;
@@ -37,8 +38,17 @@ interface TopUpcomingAnime extends Anime {
   rated: boolean | null;
 }
 
+interface AboutAnimeInfo extends Anime {
+  rating: string | null;
+  category: string | null;
+  duration: string | null;
+  quality: string | null;
+  description: string | null;
+}
+
 export {
   ScrapedHomePage,
+  ScrapedAboutPage,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
@@ -46,4 +56,5 @@ export {
   TrendingAnime,
   TopAiringAnime,
   TopUpcomingAnime,
+  AboutAnimeInfo,
 };
