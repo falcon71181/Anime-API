@@ -3,6 +3,7 @@ import {
   ExtraAboutAnimeInfo,
   AnimeSeasonsInfo,
   RelatedAnime,
+  RecommendedAnime,
 } from "./anime";
 
 export interface ScrapedAboutPage {
@@ -10,4 +11,5 @@ export interface ScrapedAboutPage {
   moreInfo: ExtraAboutAnimeInfo;
   seasons: AnimeSeasonsInfo[];
   relatedAnimes: RelatedAnime[];
+  recommendedAnimes: RecommendedAnime[];
 }

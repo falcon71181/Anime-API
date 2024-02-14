@@ -59,6 +59,8 @@ interface RelatedAnime extends Anime {
   category: string | null;
 }
 
+type RecommendedAnime = TopUpcomingAnime;
+
 export {
   ScrapedHomePage,
   ScrapedAboutPage,
@@ -74,4 +76,5 @@ export {
   ExtraAboutAnimeInfo,
   AnimeSeasonsInfo,
   RelatedAnime,
+  RecommendedAnime,
 };
