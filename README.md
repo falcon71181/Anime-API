@@ -1,5 +1,15 @@
 > [!IMPORTANT]
 > <img src="https://media.tenor.com/xTujfMHupbEAAAAi/under-construction-lex.gif"></img><h6> Currently Working On It</h6>
+
+## ⚡ Web Scraping Status
+
+Anime Websites  |    STATUS
+--------------  | -------------
+aniwatch.to     | <kbd>Working On It</kbd>
+
+>[!NOTE]
+>More Websites Will be Added in Future
+
 ### `GET` AniWatch Home Page
 
 #### Endpoint
