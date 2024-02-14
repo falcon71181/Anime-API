@@ -11,6 +11,7 @@ import {
   extract_about_info,
   extract_extra_about_info,
   extract_anime_seasons_info,
+  extract_related_animes,
 } from "../../extracters/aniwatch/extracters";
 import { ScrapedAboutPage, AboutAnimeInfo } from "../../types/aniwatch/anime";
 
@@ -38,7 +39,7 @@ export const scrapeAboutPage = async (
     moreInfo: {},
     // genre: [],
     seasons: [],
-    // relatedAnimes: [],
+    relatedAnimes: [],
     // mostPopularAnimes: [],
   };
   const aboutURL: string = new URL(id, URLs.BASE).toString();
@@ -63,7 +64,7 @@ export const scrapeAboutPage = async (
     res.moreInfo = extract_extra_about_info($, extraInfoSelector);
     // res.genre = extractAboutGenre($, animeGenreSelector);
     res.seasons = extract_anime_seasons_info($, seasonsSelectors);
-    // res.relatedAnimes = extractRelatedAnimes($, relatedAnimesSelectors);
+    res.relatedAnimes = extract_related_animes($, relatedAnimesSelectors);
 
     return res;
   } catch (err) {
