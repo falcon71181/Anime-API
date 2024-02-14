@@ -1,7 +1,7 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
 import { AxiosError } from "axios";
-import { extract_top_upcoming_animes } from "./top_upcoming_animes";
+import { extract_top_upcoming_animes } from "./extracters";
 import { RecommendedAnime } from "../../types/aniwatch/anime";
 
 export const extract_recommended_animes = (
