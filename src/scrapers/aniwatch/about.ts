@@ -6,6 +6,7 @@ import {
 } from "../../utils/aniwatch/constants";
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
+import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 import {
   extract_about_info,
@@ -39,7 +40,6 @@ export const scrapeAboutPage = async (
   const res: ScrapedAboutPage = {
     info: defaultInfo, // need to improve it in future
     moreInfo: {},
-    // genre: [],
     seasons: [],
     relatedAnimes: [],
     recommendedAnimes: [],
@@ -54,15 +54,15 @@ export const scrapeAboutPage = async (
     },
   });
 
-  const $ = load(mainPage.data);
-  const selectors = "#ani_detail .container .anis-content";
-  const extraInfoSelector = `${selectors} .anisc-info`;
-  const seasonsSelectors = ".os-list a.os-item";
-  const relatedAnimesSelectors =
+  const $: CheerioAPI = load(mainPage.data);
+  const selectors: SelectorType = "#ani_detail .container .anis-content";
+  const extraInfoSelector: SelectorType = `${selectors} .anisc-info`;
+  const seasonsSelectors: SelectorType = ".os-list a.os-item";
+  const relatedAnimesSelectors: SelectorType =
     "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
-  const recommendedAnimesSelectors =
+  const recommendedAnimesSelectors: SelectorType =
     "#main-content .block_area.block_area_category .tab-content .flw-item";
-  const mostPopularAnimesSelectors =
+  const mostPopularAnimesSelectors: SelectorType =
     "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(2) .anif-block-ul ul li";
 
   try {
