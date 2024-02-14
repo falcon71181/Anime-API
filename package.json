@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx nodemon",
     "start": "npm run build && node build/server.js",
-    "build": "rimraf ./build && tsc"
+    "build": "rimraf ./build && tsc",
+    "vercel-build": "echo building"
   },
   "keywords": [],
   "author": "",
