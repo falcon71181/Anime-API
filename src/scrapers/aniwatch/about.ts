@@ -13,6 +13,7 @@ import {
   extract_anime_seasons_info,
   extract_related_animes,
   extract_recommended_animes,
+  extract_mostpopular_animes,
 } from "../../extracters/aniwatch/extracters";
 import { ScrapedAboutPage, AboutAnimeInfo } from "../../types/aniwatch/anime";
 
@@ -42,7 +43,7 @@ export const scrapeAboutPage = async (
     seasons: [],
     relatedAnimes: [],
     recommendedAnimes: [],
-    // mostPopularAnimes: [],
+    mostPopularAnimes: [],
   };
   const aboutURL: string = new URL(id, URLs.BASE).toString();
   const mainPage = await axios.get(aboutURL, {
@@ -61,6 +62,8 @@ export const scrapeAboutPage = async (
     "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
   const recommendedAnimesSelectors =
     "#main-content .block_area.block_area_category .tab-content .flw-item";
+  const mostPopularAnimesSelectors =
+    "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(2) .anif-block-ul ul li";
 
   try {
     res.info = extract_about_info($, selectors);
@@ -70,6 +73,10 @@ export const scrapeAboutPage = async (
     res.recommendedAnimes = extract_recommended_animes(
       $,
       recommendedAnimesSelectors,
+    );
+    res.mostPopularAnimes = extract_mostpopular_animes(
+      $,
+      mostPopularAnimesSelectors,
     );
 
     return res;

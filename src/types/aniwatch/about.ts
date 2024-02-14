@@ -4,6 +4,7 @@ import {
   AnimeSeasonsInfo,
   RelatedAnime,
   RecommendedAnime,
+  MostPopularAnime,
 } from "./anime";
 
 export interface ScrapedAboutPage {
@@ -12,4 +13,5 @@ export interface ScrapedAboutPage {
   seasons: AnimeSeasonsInfo[];
   relatedAnimes: RelatedAnime[];
   recommendedAnimes: RecommendedAnime[];
+  mostPopularAnimes: MostPopularAnime[];
 }

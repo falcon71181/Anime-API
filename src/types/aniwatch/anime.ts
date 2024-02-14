@@ -60,6 +60,7 @@ interface RelatedAnime extends Anime {
 }
 
 type RecommendedAnime = TopUpcomingAnime;
+type MostPopularAnime = RelatedAnime;
 
 export {
   ScrapedHomePage,
@@ -77,4 +78,5 @@ export {
   AnimeSeasonsInfo,
   RelatedAnime,
   RecommendedAnime,
+  MostPopularAnime,
 };
