@@ -55,6 +55,10 @@ interface AnimeSeasonsInfo extends MinimalAnime {
   isCurrent: boolean | false;
 }
 
+interface RelatedAnime extends Anime {
+  category: string | null;
+}
+
 export {
   ScrapedHomePage,
   ScrapedAboutPage,
@@ -69,4 +73,5 @@ export {
   AboutAnimeInfo,
   ExtraAboutAnimeInfo,
   AnimeSeasonsInfo,
+  RelatedAnime,
 };
