@@ -123,7 +123,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-http://localhost:3001/aniwatch/:id
+http://localhost:3001/aniwatch/anime/:id
 ```
 
 #### Query Parameters
@@ -139,7 +139,7 @@ http://localhost:3001/aniwatch/:id
 
 ```javascript
 const resp = await fetch(
-  "http://localhost:3001/aniwatch/jujutsu-kaisen-2nd-season-18413"
+  "http://localhost:3001/aniwatch/anime/jujutsu-kaisen-2nd-season-18413"
 );
 const data = await res.json();
 console.log(data);
