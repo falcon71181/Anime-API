@@ -8,7 +8,10 @@ import createHttpError, { HttpError } from "http-errors";
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import type { CheerioAPI, SelectorType } from "cheerio";
-import { extract_searched_animes } from "../../extracters/aniwatch/extracters";
+import {
+  extract_searched_animes,
+  extract_mostpopular_animes,
+} from "../../extracters/aniwatch/extracters";
 import { ScrapedSearchPage } from "../../types/aniwatch/anime";
 
 export const scrapeSearchPage = async (
@@ -17,6 +20,7 @@ export const scrapeSearchPage = async (
 ): Promise<ScrapedSearchPage | HttpError> => {
   const res: ScrapedSearchPage = {
     animes: [],
+    mostPopularAnimes: [],
     // currentPage: page,
     // hasNextPage: false,
     // totalPages: 1,
@@ -37,8 +41,14 @@ export const scrapeSearchPage = async (
 
     const selectors: SelectorType =
       "#main-content .tab-content .film_list-wrap .flw-item";
+    const mostPopularAnimesSelectors: SelectorType =
+      "#main-sidebar .block_area.block_area_sidebar.block_area-realtime .anif-block-ul ul li";
 
     res.animes = extract_searched_animes($, selectors);
+    res.mostPopularAnimes = extract_mostpopular_animes(
+      $,
+      mostPopularAnimesSelectors,
+    );
 
     return res;
   } catch (err) {
