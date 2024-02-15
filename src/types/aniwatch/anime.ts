@@ -1,6 +1,7 @@
 import { ScrapedHomePage } from "./home";
 import { ScrapedAboutPage } from "./about";
 import { ScrapedSearchPage } from "./search";
+import { ScrapedCategoryPage } from "./category";
 
 interface MinimalAnime {
   id: string | null;
@@ -62,8 +63,8 @@ interface RelatedAnime extends Anime {
 
 type RecommendedAnime = TopUpcomingAnime;
 type MostPopularAnime = RelatedAnime;
-
 type SearchedAnime = TopUpcomingAnime;
+type CategoryAnime = TopUpcomingAnime;
 
 type Genre =
   | "Action"
@@ -112,6 +113,7 @@ export {
   ScrapedHomePage,
   ScrapedAboutPage,
   ScrapedSearchPage,
+  ScrapedCategoryPage,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
@@ -127,5 +129,6 @@ export {
   RecommendedAnime,
   MostPopularAnime,
   SearchedAnime,
+  CategoryAnime,
   Genre,
 };
