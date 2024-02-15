@@ -21,9 +21,9 @@ export const scrapeSearchPage = async (
   const res: ScrapedSearchPage = {
     animes: [],
     mostPopularAnimes: [],
-    // currentPage: page,
-    // hasNextPage: false,
-    // totalPages: 1,
+    currentPage: Number(page),
+    hasNextPage: false,
+    totalPages: 1,
   };
 
   try {
@@ -49,6 +49,32 @@ export const scrapeSearchPage = async (
       $,
       mostPopularAnimesSelectors,
     );
+
+    res.hasNextPage =
+      $(".pagination > li").length > 0
+        ? $(".pagination li.active").length > 0
+          ? $(".pagination > li").last().hasClass("active")
+            ? false
+            : true
+          : false
+        : false;
+
+    res.totalPages =
+      Number(
+        $('.pagination > .page-item a[title="Last"]')
+          ?.attr("href")
+          ?.split("=")
+          .pop() ??
+          $('.pagination > .page-item a[title="Next"]')
+            ?.attr("href")
+            ?.split("=")
+            .pop() ??
+          $(".pagination > .page-item.active a")?.text()?.trim(),
+      ) || 1;
+
+    if (!res.hasNextPage && res.animes.length === 0) {
+      res.totalPages = 0;
+    }
 
     return res;
   } catch (err) {
