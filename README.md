@@ -133,7 +133,7 @@ http://localhost:3001/aniwatch/anime/:id
 |   `id`    | string |          The unique Anime ID         |    YES    |  -----  |
 
 > [!NOTE]
-> Anime ID should be In <b>Kebab Case</b>
+> Anime ID should be In <kbd><b>Kebab Case</b></kbd>
 
 #### Request sample
 
@@ -229,5 +229,72 @@ console.log(data);
         },
         {...},
   ],
+}
+```
+
+### `GET` Search Anime
+
+#### Endpoint
+
+```sh
+http://localhost:3001/aniwatch/search?keyword=$(query)&page=$(page)
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `query`  | string |         Search Query for Anime       |    YES    |  -----  |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+> [!NOTE]
+> <div>Search Query should be In <kbd><b>Kebab Case</b></kbd></div>
+> <div>Page No should be a <kbd><b>Number</b></kbd></b></div>
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "http://localhost:3001/aniwatch/aniwatch/search?keyword=one+piece&page=1"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+{
+  "animes": [
+        {
+            "id": string,
+            "name": string,
+            "img": string,
+            "episodes": {
+                "eps": number,
+                "sub": number,
+                "dub": number
+            },
+            "duration": string,
+            "rated": boolean
+        },
+        {...},
+  ],
+  "mostPopularAnimes": [
+        {
+            "id": string,
+            "name": string,
+            "category": string,
+            "img": string,
+            "episodes": {
+                "eps": number,
+                "sub": number,
+                "dub": number
+            }
+        },
+        {...},
+  ],
+  "currentPage": number,
+  "hasNextPage": boolean,
+  "totalPages": number,
+  "genres": string[]
 }
 ```
