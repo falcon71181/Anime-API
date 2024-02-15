@@ -11,6 +11,7 @@ import type { CheerioAPI, SelectorType } from "cheerio";
 import {
   extract_searched_animes,
   extract_mostpopular_animes,
+  extract_genre_list,
 } from "../../extracters/aniwatch/extracters";
 import { ScrapedSearchPage } from "../../types/aniwatch/anime";
 
@@ -24,6 +25,7 @@ export const scrapeSearchPage = async (
     currentPage: Number(page),
     hasNextPage: false,
     totalPages: 1,
+    genres: [],
   };
 
   try {
@@ -43,12 +45,15 @@ export const scrapeSearchPage = async (
       "#main-content .tab-content .film_list-wrap .flw-item";
     const mostPopularAnimesSelectors: SelectorType =
       "#main-sidebar .block_area.block_area_sidebar.block_area-realtime .anif-block-ul ul li";
+    const genresSelectors: SelectorType =
+      "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
     res.animes = extract_searched_animes($, selectors);
     res.mostPopularAnimes = extract_mostpopular_animes(
       $,
       mostPopularAnimesSelectors,
     );
+    res.genres = extract_genre_list($, genresSelectors);
 
     res.hasNextPage =
       $(".pagination > li").length > 0
@@ -65,11 +70,11 @@ export const scrapeSearchPage = async (
           ?.attr("href")
           ?.split("=")
           .pop() ??
-          $('.pagination > .page-item a[title="Next"]')
-            ?.attr("href")
-            ?.split("=")
-            .pop() ??
-          $(".pagination > .page-item.active a")?.text()?.trim(),
+        $('.pagination > .page-item a[title="Next"]')
+          ?.attr("href")
+          ?.split("=")
+          .pop() ??
+        $(".pagination > .page-item.active a")?.text()?.trim(),
       ) || 1;
 
     if (!res.hasNextPage && res.animes.length === 0) {
