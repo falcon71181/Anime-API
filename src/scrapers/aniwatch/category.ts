@@ -28,9 +28,9 @@ export const scrapeCategoryPage = async (
     },
     category,
     genres: [],
-    // currentPage: Number(page),
-    // hasNextPage: false,
-    // totalPages: 1,
+    currentPage: Number(page),
+    hasNextPage: false,
+    totalPages: 1,
   };
 
   try {
@@ -57,6 +57,32 @@ export const scrapeCategoryPage = async (
     res.category = $(categorySelectors)?.text()?.trim() ?? category;
     res.animes = extract_category_animes($, selectors);
     res.genres = extract_genre_list($, genresSelectors);
+
+    res.hasNextPage =
+      $(".pagination > li").length > 0
+        ? $(".pagination li.active").length > 0
+          ? $(".pagination > li").last().hasClass("active")
+            ? false
+            : true
+          : false
+        : false;
+
+    res.totalPages =
+      Number(
+        $('.pagination > .page-item a[title="Last"]')
+          ?.attr("href")
+          ?.split("=")
+          .pop() ??
+          $('.pagination > .page-item a[title="Next"]')
+            ?.attr("href")
+            ?.split("=")
+            .pop() ??
+          $(".pagination > .page-item.active a")?.text()?.trim(),
+      ) || 1;
+
+    if (res.animes.length === 0 && !res.hasNextPage) {
+      res.totalPages = 0;
+    }
 
     $(top10Selectors).each((_index, element) => {
       const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();

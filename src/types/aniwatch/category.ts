@@ -9,4 +9,7 @@ export interface ScrapedCategoryPage {
   };
   category: string;
   genres: string[];
+  currentPage: number;
+  hasNextPage: boolean;
+  totalPages: number;
 }
