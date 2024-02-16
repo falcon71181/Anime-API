@@ -15,13 +15,13 @@ aniwatch.to     | <kbd>Working On It</kbd>
 #### Endpoint
 
 ```url
-http://localhost:3001/aniwatch/
+https://api-anime-rouge.vercel.app/aniwatch/
 ```
 
 #### Request sample
 
 ```typescript
-const resp = await fetch("http://localhost:3001/aniwatch/");
+const resp = await fetch("https://api-anime-rouge.vercel.app/aniwatch/");
 const data = await resp.json();
 console.log(data);
 ```
@@ -123,7 +123,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-http://localhost:3001/aniwatch/anime/:id
+https://api-anime-rouge.vercel.app/aniwatch/anime/:id
 ```
 
 #### Query Parameters
@@ -139,7 +139,7 @@ http://localhost:3001/aniwatch/anime/:id
 
 ```javascript
 const resp = await fetch(
-  "http://localhost:3001/aniwatch/anime/jujutsu-kaisen-2nd-season-18413"
+  "https://api-anime-rouge.vercel.app/aniwatch/anime/jujutsu-kaisen-2nd-season-18413"
 );
 const data = await res.json();
 console.log(data);
@@ -237,7 +237,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-http://localhost:3001/aniwatch/search?keyword=$(query)&page=$(page)
+https://api-anime-rouge.vercel.app/aniwatch/search?keyword=$(query)&page=$(page)
 ```
 
 #### Query Parameters
@@ -253,7 +253,7 @@ http://localhost:3001/aniwatch/search?keyword=$(query)&page=$(page)
 
 ```javascript
 const resp = await fetch(
-  "http://localhost:3001/aniwatch/aniwatch/search?keyword=one+piece&page=1"
+  "https://api-anime-rouge.vercel.app/aniwatch/search?keyword=one+piece&page=1"
 );
 const data = await res.json();
 console.log(data);
@@ -296,5 +296,113 @@ console.log(data);
   "hasNextPage": boolean,
   "totalPages": number,
   "genres": string[]
+}
+```
+
+### `GET` Search Anime
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/aniwatch/:category?page=$(page)
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+| `category`| string |         Search Query for Anime       |    YES    |  -----  |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+<break>
+
+> [!NOTE]
+> <div>category should be In <kbd><b>Kebab Case</b></kbd></div>
+> <div>Page No should be a <kbd><b>Number</b></kbd></b></div>
+
+<break>
+  
+> [!TIP]
+> Add type to Category - "subbed-anime" | "dubbed-anime" | "tv" | "movie" | "most-popular" | "top-airing" | "ova" | "ona" | "special" | "events";
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/aniwatch/ona?page=1"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+{
+  "animes": [
+        {
+            "id": string,
+            "name": string,
+            "img": string,
+            "episodes": {
+                "eps": number,
+                "sub": number,
+                "dub": number
+            },
+            "duration": string,
+            "rated": boolean
+        },
+        {...},
+  ],
+  "top10Animes": {
+        "day": [
+            {
+                "id": string,
+                "name": string,
+                "rank": number,
+                "img": string,
+                "episodes": {
+                    "eps": number,
+                    "sub": number,
+                    "dub": number
+                }
+            },
+            {..},
+        ],
+        "week": [
+            {
+                "id": string,
+                "name": string,
+                "rank": number,
+                "img": string,
+                "episodes": {
+                    "eps": number,
+                    "sub": number,
+                    "dub": number
+                }
+            },
+            {...},
+        ],
+        "month": [
+            {
+                "id": string,
+                "name": string,
+                "rank": number,
+                "img": string,
+                "episodes": {
+                    "eps": number,
+                    "sub": number,
+                    "dub": number
+                }
+            },
+            {...},
+        ],
+  "category": string,
+  "genres": string[],
+  "currentPage": number,
+  "hasNextPage": boolean,
+  "totalPages": number
 }
 ```
