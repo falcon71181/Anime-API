@@ -66,7 +66,19 @@ type MostPopularAnime = RelatedAnime;
 type SearchedAnime = TopUpcomingAnime;
 type CategoryAnime = TopUpcomingAnime;
 
-type Genre =
+type Categories =
+  | "subbed-anime"
+  | "dubbed-anime"
+  | "tv"
+  | "movie"
+  | "most-popular"
+  | "top-airing"
+  | "ova"
+  | "ona"
+  | "special"
+  | "events";
+
+type Genres =
   | "Action"
   | "Adventure"
   | "Cars"
@@ -130,5 +142,6 @@ export {
   MostPopularAnime,
   SearchedAnime,
   CategoryAnime,
-  Genre,
+  Genres,
+  Categories,
 };
