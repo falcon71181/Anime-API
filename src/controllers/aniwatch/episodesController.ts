@@ -1,6 +1,6 @@
 import createHttpError from "http-errors";
 import type { RequestHandler } from "express";
-import { scrapeEpisodesPage } from "../../scrapers/aniwatch/episodes";
+import { scrapeEpisodesPage } from "../../scrapers/aniwatch/scrapers";
 
 const getEpisodesInfo: RequestHandler = async (req, res) => {
   try {
