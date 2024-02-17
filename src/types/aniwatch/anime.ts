@@ -2,6 +2,7 @@ import { ScrapedHomePage } from "./home";
 import { ScrapedAboutPage } from "./about";
 import { ScrapedSearchPage } from "./search";
 import { ScrapedCategoryPage } from "./category";
+import { ScrapedEpisodesPage } from "./episodes";
 
 interface MinimalAnime {
   id: string | null;
@@ -66,6 +67,13 @@ type MostPopularAnime = RelatedAnime;
 type SearchedAnime = TopUpcomingAnime;
 type CategoryAnime = TopUpcomingAnime;
 
+interface Episode {
+  name: string | null;
+  episodeNo: number | null;
+  episodeId: string | null;
+  filler: boolean | false;
+}
+
 type Category =
   | "subbed-anime"
   | "dubbed-anime"
@@ -126,6 +134,7 @@ export {
   ScrapedAboutPage,
   ScrapedSearchPage,
   ScrapedCategoryPage,
+  ScrapedEpisodesPage,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
@@ -144,4 +153,5 @@ export {
   CategoryAnime,
   Genre,
   Category,
+  Episode,
 };
