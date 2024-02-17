@@ -6,6 +6,7 @@
 Anime Websites  |    STATUS
 --------------  | -------------
 aniwatch.to     | <kbd>Working On It</kbd>
+gogoanime       | <b>IN FUTURE</b>
 
 >[!NOTE]
 >More Websites Will be Added in Future
@@ -406,3 +407,68 @@ console.log(data);
   "totalPages": number
 }
 ```
+
+### `GET` Anime Episodes
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/aniwatch/episodes/:id
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|    `id`   | string |               Anime ID               |    YES    |  -----  |
+
+<break>
+
+> [!NOTE]
+> <div>Anime ID should be In <kbd><b>Kebab Case</b></kbd></div>
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/aniwatch/episodes/one-piece-100"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+{
+  "totalEpisodes": number,
+  "episodes": [
+      {
+          "name": string,
+          "episodeNo": number,
+          "episodeId": string,
+          "filler": boolean
+      },
+      {...},
+  ]
+}
+```
+
+<break>
+#############################################################################
+
+## <span>🖱️ For Front End</span>
+
+> [!TIP]
+> Kindly use this repo to make Front End
+
+  - [Eltik / Anify](https://github.com/Eltik/Anify) 
+  
+#############################################################################
+
+## <span>🤝 Thanks ❤️</span>
+
+- [consumet.ts](https://github.com/consumet/consumet.ts)
+- [ghoshRitesh12](https://github.com/ghoshRitesh12)
