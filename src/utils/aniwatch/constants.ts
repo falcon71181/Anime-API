@@ -8,6 +8,7 @@ const URLs = {
   HOME: "https://aniwatch.to/home",
   SEARCH: "https://aniwatch.to/search",
   GENRE: "https://aniwatch.to/genre",
+  AJAX: "https://aniwatch.to/ajax",
 };
 
 const ACCEPT_HEADER =

@@ -13,6 +13,7 @@ import { extract_recommended_animes } from "./recommended_animes";
 import { extract_mostpopular_animes } from "./mostpopular_animes";
 import { extract_searched_animes } from "./searched_animes";
 import { extract_category_animes } from "./category_animes";
+import { extract_episodes_info } from "./episodes";
 
 export {
   extract_spotlight_animes,
@@ -30,4 +31,5 @@ export {
   extract_mostpopular_animes,
   extract_searched_animes,
   extract_category_animes,
+  extract_episodes_info,
 };
