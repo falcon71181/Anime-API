@@ -456,6 +456,70 @@ console.log(data);
 }
 ```
 
+### `GET` Anime Episodes Servers
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/aniwatch/servers?id=${id}
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|    `id`   | string |              Episode ID              |    YES    |  -----  |
+
+<break>
+
+> [!NOTE]
+> <div>Episode ID should be In <kbd><b>Kebab Case</b></kbd></div>
+
+important 
+
+> [!NOTE]
+> <div><kbd><b>id</b></kbd> is a combination of AnimeId and EpisodeId</div>
+
+eg.
+```bash
+one-piece-100?ep=84802
+```
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/aniwatch/servers?id=one-piece-100?ep=84802"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+{
+  "episodeId": string,
+  "episodeNo": number,
+  "sub": [
+    {
+      "serverName": string,
+      "serverId": number
+    },
+    {...},
+  ],
+  "dub": [
+    {
+      "serverName": string,
+      "serverId": number
+    },
+    {...},
+  ],
+}
+```
+
 <break>
 #############################################################################
 
