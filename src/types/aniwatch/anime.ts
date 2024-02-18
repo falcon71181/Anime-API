@@ -3,6 +3,7 @@ import { ScrapedAboutPage } from "./about";
 import { ScrapedSearchPage } from "./search";
 import { ScrapedCategoryPage } from "./category";
 import { ScrapedEpisodesPage } from "./episodes";
+import { ScrapedEpisodeServer } from "./servers";
 
 interface MinimalAnime {
   id: string | null;
@@ -73,6 +74,13 @@ interface Episode {
   episodeId: string | null;
   filler: boolean | false;
 }
+
+interface SubEpisode {
+  serverName: string;
+  serverId: number | null;
+}
+
+type DubEpisode = SubEpisode;
 
 interface Video {
   url: string;
@@ -154,6 +162,7 @@ export {
   ScrapedSearchPage,
   ScrapedCategoryPage,
   ScrapedEpisodesPage,
+  ScrapedEpisodeServer,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
@@ -173,6 +182,8 @@ export {
   Genre,
   Category,
   Episode,
+  SubEpisode,
+  DubEpisode,
   Video,
   Subtitle,
   Intro,

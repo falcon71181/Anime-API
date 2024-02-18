@@ -5,6 +5,7 @@ import {
   getSearchPageInfo,
   getCategoryPage,
   getEpisodesInfo,
+  getEpisodeServersInfo,
 } from "../../controllers/aniwatch/controllers";
 
 const aniwatch_router: IRouter = Router();
@@ -20,6 +21,9 @@ aniwatch_router.get("/anime/:id", getAboutPageInfo);
 
 // /aniwatch/episodes/:id
 aniwatch_router.get("/episodes/:id", getEpisodesInfo);
+
+// /aniwatch/servers?id=${id}
+aniwatch_router.get("/servers", getEpisodeServersInfo);
 
 //  aniwatch/:category?page=${page}
 aniwatch_router.get("/:category", getCategoryPage);
