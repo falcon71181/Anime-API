@@ -74,6 +74,25 @@ interface Episode {
   filler: boolean | false;
 }
 
+interface Video {
+  url: string;
+  quality?: string;
+  isM3U8?: boolean;
+  size?: number;
+  [x: string]: unknown;
+}
+
+interface Subtitle {
+  id?: string;
+  url: string;
+  lang: string;
+}
+
+interface Intro {
+  start: number;
+  end: number;
+}
+
 type Category =
   | "subbed-anime"
   | "dubbed-anime"
@@ -154,4 +173,7 @@ export {
   Genre,
   Category,
   Episode,
+  Video,
+  Subtitle,
+  Intro,
 };
