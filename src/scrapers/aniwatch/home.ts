@@ -1,5 +1,5 @@
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -38,6 +38,7 @@ export const scrapeHomePage = async (): Promise<
     topUpcomingAnimes: [],
     genres: [],
   };
+  const URLs = await URL_fn();
   try {
     const mainPage = await axios.get(URLs.HOME, {
       headers: {

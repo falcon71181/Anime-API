@@ -1,5 +1,5 @@
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -29,6 +29,7 @@ export const scrapeSearchPage = async (
   };
 
   try {
+    const URLs = await URL_fn();
     const mainPage = await axios.get(
       `${URLs.SEARCH}?keyword=${query}&page=${page}`,
       {

@@ -1,7 +1,7 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -34,6 +34,7 @@ export const scrapeCategoryPage = async (
   };
 
   try {
+    const URLs = await URL_fn();
     const scrapeUrl = new URL(category, URLs.BASE);
 
     const mainPage = await axios.get(`${scrapeUrl}?page=${page}`, {

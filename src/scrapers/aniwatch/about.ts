@@ -1,5 +1,5 @@
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -45,6 +45,7 @@ export const scrapeAboutPage = async (
     recommendedAnimes: [],
     mostPopularAnimes: [],
   };
+  const URLs = await URL_fn();
   const aboutURL: string = new URL(id, URLs.BASE).toString();
   const mainPage = await axios.get(aboutURL, {
     headers: {

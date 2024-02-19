@@ -1,5 +1,5 @@
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -21,6 +21,7 @@ export const scrapeEpisodeServersPage = async (
 
   try {
     const epId = episodeId.split("?ep=")[1];
+    const URLs = await URL_fn();
 
     const { data } = await axios.get(
       `${URLs.AJAX}/v2/episode/servers?episodeId=${epId}`,

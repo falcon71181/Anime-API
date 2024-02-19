@@ -1,5 +1,5 @@
 import {
-  URLs,
+  URL_fn,
   ACCEPT_HEADER,
   ACCEPT_ENCODING_HEADER,
   USER_AGENT_HEADER,
@@ -20,6 +20,7 @@ export const scrapeEpisodesPage = async (
   };
 
   try {
+    const URLs = await URL_fn();
     const episodes = await axios.get(
       `${URLs.AJAX}/v2/episode/list/${animeId.split("-").pop()}`,
       {
