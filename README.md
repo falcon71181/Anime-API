@@ -1,11 +1,10 @@
-> [!IMPORTANT]
-> <img src="https://media.tenor.com/xTujfMHupbEAAAAi/under-construction-lex.gif"></img><h6> Currently Working On It</h6>
+
 
 ## ⚡ Web Scraping Status
 
 Anime Websites  |    STATUS
 --------------  | -------------
-aniwatch.to     | <kbd>Working On It</kbd>
+aniwatch        | <b>DONE</b>
 gogoanime       | <b>IN FUTURE</b>
 
 >[!NOTE]
@@ -517,6 +516,66 @@ console.log(data);
     },
     {...},
   ],
+}
+```
+
+
+### `GET` Anime Episode Streaming Source Links
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/anime/episode-srcs?id={episodeId}&server={server}&category={category}
+```
+
+#### Query Parameters
+
+| Parameter  |  Type  |                  Description                  | Required? |     Default      |
+| :--------: | :----: | :-------------------------------------------: | :-------: | :--------------: |
+|    `id`    | string |                  episode Id                   |    Yes    |        --        |
+|  `server`  | string |                  server name.                 |    No     | `"vidstreaming"` |
+| `category` | string | The category of the episode ('sub' or 'dub'). |    No     |     `"sub"`      |
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/aniwatch/episode-srcs?id=solo-leveling-18718?ep=120094&server=vidstreaming&category=sub"
+);
+const data = await resp.json();
+console.log(data);
+```
+> [!CAUTION]
+> decryption key changes frequently ..., it sometime may not work
+
+<break>
+  
+#### Response Schema
+
+```typescript
+{
+  headers: {
+    Referer: string,
+    "User-Agent": string,
+    ...
+  },
+  sources: [
+    {
+      url: string,
+      isM3U8: boolean,
+      quality?: string,
+    },
+    {...}
+  ],
+  subtitles: [
+    {
+      lang: "English",
+      url: string,
+    },
+    {...}
+  ],
+  anilistID: number | null,
+  malID: number | null,
 }
 ```
 
