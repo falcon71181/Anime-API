@@ -4,6 +4,7 @@ import { getSearchPageInfo } from "./searchController";
 import { getCategoryPage } from "./categoryController";
 import { getEpisodesInfo } from "./episodesController";
 import { getEpisodeServersInfo } from "./episodeServersController";
+import { getAnimeEpisodeSourcesInfo } from "./episodeServerSourcesController";
 
 export {
   getHomePageInfo,
@@ -12,4 +13,5 @@ export {
   getCategoryPage,
   getEpisodesInfo,
   getEpisodeServersInfo,
+  getAnimeEpisodeSourcesInfo,
 };
