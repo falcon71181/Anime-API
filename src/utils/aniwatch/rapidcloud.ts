@@ -7,6 +7,7 @@ import {
 import type { Video, Subtitle, Intro } from "../../types/aniwatch/anime";
 
 type extractReturn = { sources: Video[]; subtitles: Subtitle[] };
+const d_keys = ["cinemaxhq/keys/e1/key", "Claudemirovsky/keys/e1/key"];
 
 // https://megacloud.tv/embed-2/e-1/IxJ7GjGVCyml?k=1
 class RapidCloud {
@@ -43,9 +44,7 @@ class RapidCloud {
       } = res;
 
       let decryptKey = await (
-        await axios.get(
-          "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key",
-        )
+        await axios.get(`https://raw.githubusercontent.com/${d_keys[1]}`)
       ).data;
 
       decryptKey = substringBefore(
@@ -55,9 +54,7 @@ class RapidCloud {
 
       if (!decryptKey) {
         decryptKey = await (
-          await axios.get(
-            "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key",
-          )
+          await axios.get(`https://raw.githubusercontent.com/${d_keys[1]}`)
         ).data;
       }
 
