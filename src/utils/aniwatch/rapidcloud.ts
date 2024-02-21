@@ -44,7 +44,7 @@ class RapidCloud {
 
       let decryptKey = await (
         await axios.get(
-          "https://raw.githubusercontent.com/theonlymo/keys/e1/key",
+          "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key",
         )
       ).data;
 
@@ -56,7 +56,7 @@ class RapidCloud {
       if (!decryptKey) {
         decryptKey = await (
           await axios.get(
-            "https://raw.githubusercontent.com/theonlymo/keys/e1/key",
+            "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key",
           )
         ).data;
       }
