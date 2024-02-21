@@ -4,6 +4,7 @@ import { ScrapedSearchPage } from "./search";
 import { ScrapedCategoryPage } from "./category";
 import { ScrapedEpisodesPage } from "./episodes";
 import { ScrapedEpisodeServer } from "./servers";
+import { ScrapedAnimeEpisodesSources } from "./episode_server_source";
 
 interface MinimalAnime {
   id: string | null;
@@ -101,6 +102,28 @@ interface Intro {
   end: number;
 }
 
+type AnimeServers =
+  | "vidstreaming"
+  | "megacloud"
+  | "streamsb"
+  | "streamtape"
+  | "vidcloud";
+
+enum Servers {
+  VidStreaming = "vidstreaming",
+  MegaCloud = "megacloud",
+  StreamSB = "streamsb",
+  StreamTape = "streamtape",
+  VidCloud = "vidcloud",
+  AsianLoad = "asianload",
+  GogoCDN = "gogocdn",
+  MixDrop = "mixdrop",
+  UpCloud = "upcloud",
+  VizCloud = "vizcloud",
+  MyCloud = "mycloud",
+  Filemoon = "filemoon",
+}
+
 type Category =
   | "subbed-anime"
   | "dubbed-anime"
@@ -163,6 +186,7 @@ export {
   ScrapedCategoryPage,
   ScrapedEpisodesPage,
   ScrapedEpisodeServer,
+  ScrapedAnimeEpisodesSources,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
@@ -184,6 +208,8 @@ export {
   Episode,
   SubEpisode,
   DubEpisode,
+  AnimeServers,
+  Servers,
   Video,
   Subtitle,
   Intro,
