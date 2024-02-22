@@ -5,6 +5,7 @@ import { ScrapedCategoryPage } from "./category";
 import { ScrapedEpisodesPage } from "./episodes";
 import { ScrapedEpisodeServer } from "./servers";
 import { ScrapedAnimeEpisodesSources } from "./episode_server_source";
+import { GetRoot } from "./root";
 
 interface MinimalAnime {
   id: string | null;
@@ -180,6 +181,7 @@ type Genre =
   | "Vampire";
 
 export {
+  GetRoot,
   ScrapedHomePage,
   ScrapedAboutPage,
   ScrapedSearchPage,
