@@ -31,7 +31,8 @@ const URL_fn = async () => {
   try {
     const reachable = await isSiteReachable(URLs_aniwatch.BASE);
     if (reachable) {
-      return URLs_aniwatch;
+      // aniwatch.to is not working
+      return URLs_aniwatchtv;
     } else {
       return URLs_aniwatchtv;
     }
