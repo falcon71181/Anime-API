@@ -12,6 +12,7 @@ import { extract_server_id } from "../../extracters/aniwatch/extracters";
 import RapidCloud from "../../utils/aniwatch/rapidcloud";
 import StreamSB from "../../utils/aniwatch/streamsb";
 import StreamTape from "../../utils/aniwatch/streamtape";
+import MegaCloud from "../../utils/aniwatch/megacloud";
 import { type ScrapedAnimeEpisodesSources } from "../../types/aniwatch/anime";
 
 export const scrapeAnimeEpisodeSources = async (
@@ -27,7 +28,7 @@ export const scrapeAnimeEpisodeSources = async (
       case Servers.VidStreaming:
       case Servers.VidCloud:
         return {
-          ...(await new RapidCloud().extract(serverUrl)),
+          ...(await new MegaCloud().extract(serverUrl)),
         };
       case Servers.StreamSB:
         return {
