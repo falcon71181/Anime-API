@@ -1,4 +1,7 @@
+> [!CAUTION]
+> Vercel for some reason not allowing web scrapping.
 
+<break>
 
 ## ⚡ Web Scraping Status
 
