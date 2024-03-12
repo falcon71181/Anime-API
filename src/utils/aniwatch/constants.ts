@@ -8,13 +8,13 @@ const ACCEPT_ENCODING_HEADER = "gzip, deflate, br";
 const ACCEPT_HEADER =
   "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8";
 
-// aniwatch.to
-const URLs_aniwatch = {
-  BASE: "https://aniwatch.to",
-  HOME: "https://aniwatch.to/home",
-  SEARCH: "https://aniwatch.to/search",
-  GENRE: "https://aniwatch.to/genre",
-  AJAX: "https://aniwatch.to/ajax",
+// hianime.to
+const URLs_hianime = {
+  BASE: "https://hianime.to",
+  HOME: "https://hianime.to/home",
+  SEARCH: "https://hianime.to/search",
+  GENRE: "https://hianime.to/genre",
+  AJAX: "https://hianime.to/ajax",
 };
 
 // aniwatchtv.to
@@ -29,12 +29,12 @@ const URLs_aniwatchtv = {
 // You can add SIMILAR SITES here and append if-else condition in URL_fn()
 const URL_fn = async () => {
   try {
-    const reachable = await isSiteReachable(URLs_aniwatch.BASE);
+    const reachable = await isSiteReachable(URLs_aniwatchtv.BASE);
     if (reachable) {
       // aniwatch.to is not working
       return URLs_aniwatchtv;
     } else {
-      return URLs_aniwatchtv;
+      return URLs_hianime;
     }
   } catch (error) {
     console.error("Error occurred in both sites:", error);
