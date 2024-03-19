@@ -1,3 +1,3 @@
-import { getHomePage } from "./homeController";
+import { getRecentReleases } from "./recentReleasesController";
 
-export { getHomePage };
+export { getRecentReleases };

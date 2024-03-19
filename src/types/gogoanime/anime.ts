@@ -1,4 +1,4 @@
-import { ScrapedHomePage } from "./home";
+import { ScrapedRecentReleases } from "./recent-releases";
 
 interface Anime {
   id: string | null;
@@ -13,4 +13,4 @@ interface RecentReleases extends Anime {
   episodeUrl: string;
 }
 
-export { ScrapedHomePage, RecentReleases };
+export { ScrapedRecentReleases, RecentReleases };

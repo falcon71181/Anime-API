@@ -1,9 +1,9 @@
 import { Router, type IRouter } from "express";
-import { getHomePage } from "../../controllers/gogoanime/controllers";
+import { getRecentReleases } from "../../controllers/gogoanime/controllers";
 
 const gogoanime_router: IRouter = Router();
 
 // /gogoanime/
-gogoanime_router.get("/", getHomePage);
+gogoanime_router.get("/", getRecentReleases);
 
-export default getHomePage;
+export default gogoanime_router;

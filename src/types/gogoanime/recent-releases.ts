@@ -1,5 +1,5 @@
 import { RecentReleases } from "./anime";
 
-export interface ScrapedHomePage {
+export interface ScrapedRecentReleases {
   recentReleases: RecentReleases[];
 }

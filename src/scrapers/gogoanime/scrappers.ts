@@ -1,3 +1,3 @@
-import { scrapeHomePage } from "./home";
+import { scrapeRecentReleases } from "./recent-releases";
 
-export { scrapeHomePage };
+export { scrapeRecentReleases };

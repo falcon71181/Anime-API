@@ -9,13 +9,13 @@ import { load } from "cheerio";
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 import { extract_latest_episodes } from "../../extracters/gogoanime/extracters";
-import { ScrapedHomePage } from "../../types/gogoanime/anime";
+import { ScrapedRecentReleases } from "../../types/gogoanime/anime";
 
-export const scrapeHomePage = async (
+export const scrapeRecentReleases = async (
   page: number,
-): Promise<ScrapedHomePage | HttpError> => {
+): Promise<ScrapedRecentReleases | HttpError> => {
   const URLs = await URL_fn();
-  const res: ScrapedHomePage = {
+  const res: ScrapedRecentReleases = {
     recentReleases: [],
   };
   try {
@@ -44,7 +44,7 @@ export const scrapeHomePage = async (
     return res;
   } catch (err) {
     ////////////////////////////////////////////////////////////////
-    console.error("Error in scrapeHomePage :", err); // for TESTING//
+    console.error("Error in scrapeRecentReleases :", err); // for TESTING//
     ////////////////////////////////////////////////////////////////
 
     if (err instanceof AxiosError) {

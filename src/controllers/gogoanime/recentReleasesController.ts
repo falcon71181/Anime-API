@@ -1,12 +1,12 @@
 import type { RequestHandler } from "express";
-import { scrapeHomePage } from "../../scrapers/gogoanime/home";
+import { scrapeRecentReleases } from "../../scrapers/gogoanime/scrappers";
 
-const getHomePage: RequestHandler = async (req, res) => {
+const getRecentReleases: RequestHandler = async (req, res) => {
   try {
     const page = req.query.page
       ? Number(decodeURIComponent(req.query?.page as string))
       : 1;
-    const data = await scrapeHomePage(page);
+    const data = await scrapeRecentReleases(page);
     res.status(200).json(data);
   } catch (err) {
     ////////////////////////////////////
@@ -15,4 +15,4 @@ const getHomePage: RequestHandler = async (req, res) => {
   }
 };
 
-export { getHomePage };
+export { getRecentReleases };
