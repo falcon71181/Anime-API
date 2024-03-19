@@ -1,16 +1,19 @@
-import { ScrapedRecentReleases } from "./recent-releases";
-
 interface Anime {
   id: string | null;
   name: string | null;
   img: string | null;
 }
 
-interface RecentReleases extends Anime {
+interface RecentRelease extends Anime {
   episodeId: string;
   episodeNo: number;
   subOrDub: string;
   episodeUrl: string;
 }
 
-export { ScrapedRecentReleases, RecentReleases };
+interface NewSeason extends Anime {
+  releasedYear: string;
+  animeUrl: string;
+}
+
+export { RecentRelease, NewSeason };

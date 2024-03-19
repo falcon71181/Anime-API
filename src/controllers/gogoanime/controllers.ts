@@ -1,3 +1,4 @@
-import { getRecentReleases } from "./recentReleasesController";
+import { getRecentReleases } from "./recentReleases.controller";
+import { getNewSeasons } from "./newSeasons.controller";
 
-export { getRecentReleases };
+export { getRecentReleases, getNewSeasons };
