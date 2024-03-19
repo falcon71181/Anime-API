@@ -9,16 +9,14 @@ import { load } from "cheerio";
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 import { extract_latest_episodes } from "../../extracters/gogoanime/extracters";
-import { ScrapedRecentReleases } from "../../types/gogoanime/anime";
+import { RecentRelease } from "../../types/gogoanime/anime";
 
 export const scrapeRecentReleases = async (
   page: number,
-): Promise<ScrapedRecentReleases | HttpError> => {
+): Promise<RecentRelease[] | HttpError> => {
   const URLs = await URL_fn();
-  const res: ScrapedRecentReleases = {
-    recentReleases: [],
-  };
   try {
+    let res: RecentRelease[] = [];
     const mainPage = await axios.get(
       `${URLs.AJAX}/page-recent-release.html?page=${page}`,
       {
@@ -35,7 +33,7 @@ export const scrapeRecentReleases = async (
     const recentReleasesSelectors: SelectorType =
       "div.last_episodes.loaddub > ul > li";
 
-    res.recentReleases = extract_latest_episodes(
+    res = extract_latest_episodes(
       $,
       recentReleasesSelectors,
       URLs.BASE,

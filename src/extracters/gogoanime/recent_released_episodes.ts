@@ -1,15 +1,15 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
 import { AxiosError } from "axios";
-import { RecentReleases } from "../../types/gogoanime/anime";
+import { RecentRelease } from "../../types/gogoanime/anime";
 
 export const extract_latest_episodes = (
   $: CheerioAPI,
   selectors: SelectorType,
   url_base: string,
-): RecentReleases[] => {
+): RecentRelease[] => {
   try {
-    const animes: RecentReleases[] = [];
+    const animes: RecentRelease[] = [];
     $(selectors).each((_index, element: any) => {
       const animeID =
         $(element)
