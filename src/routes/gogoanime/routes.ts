@@ -3,7 +3,7 @@ import { getRecentReleases, getNewSeasons } from "../../controllers/gogoanime/co
 
 const gogoanime_router: IRouter = Router();
 
-// /gogoanime/
+// /gogoanime/recent-releases
 gogoanime_router.get("/recent-releases", getRecentReleases);
 
 // /gogoanime/new-seasons

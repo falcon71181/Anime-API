@@ -1,3 +1,13 @@
+# ⚡Anime-API⚡
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=ts,express,nodejs" />
+  <br/>
+  <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-rouge.vercel.app</kbd></a>
+</p>
+<br/><br/>
+
+Check it out at <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-rouge.vercel.app</kbd></a>.
+
 <break>
 
 ## ⚡ Web Scraping Status
@@ -5,10 +15,13 @@
 Anime Websites  |    STATUS
 --------------  | -------------
 aniwatch        | <b>DONE</b>
-gogoanime       | <b>IN FUTURE</b>
+gogoanime       | <b>WORKING ON IT</b>
+kickassanime    | <b>IN FUTURE</b>
 
 >[!NOTE]
 >More Websites Will be Added in Future
+
+## AniWatch
 
 ### `GET` AniWatch Home Page
 
@@ -580,6 +593,48 @@ console.log(data);
 ```
 
 <break>
+
+## GoGoAnime
+
+### `GET` GoGoAnime Recent Releases
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/recent-releases
+```
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/recent-releases"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "episodeId": string,
+      "episodeNo": number,
+      "episodeUrl": string,
+      "subOrDub": string   // "SUB" | "DUB"
+  },
+  {...},
+]
+```
+
+<break>
+
 #############################################################################
 
 ## <span>🖱️ For Front End</span>
