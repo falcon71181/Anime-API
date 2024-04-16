@@ -16,4 +16,6 @@ interface NewSeason extends Anime {
   animeUrl: string;
 }
 
-export { RecentRelease, NewSeason };
+interface PopularAnime extends NewSeason { };
+
+export { RecentRelease, NewSeason, PopularAnime };
