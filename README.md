@@ -21,7 +21,12 @@ kickassanime    | <b>IN FUTURE</b>
 >[!NOTE]
 >More Websites Will be Added in Future
 
-## AniWatch
+## Index
+
+- [AniWatch](#aniwatch)
+- [GogoAnime](#gogoanime)
+
+##  <span id="aniwatch">AniWatch</span>
 
 ### `GET` AniWatch Home Page
 
@@ -594,7 +599,7 @@ console.log(data);
 
 <break>
 
-## GoGoAnime
+##  <span id="gogoanime">GoGoAnime</span>
 
 ### `GET` GoGoAnime Recent Releases
 
@@ -628,6 +633,43 @@ console.log(data);
       "episodeNo": number,
       "episodeUrl": string,
       "subOrDub": string   // "SUB" | "DUB"
+  },
+  {...},
+]
+```
+
+<break>
+
+### `GET` GoGoAnime Recent Releases
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/new-seasons
+```
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/new-seasons"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "releasedYear": string,
+      "animeUrl": string
   },
   {...},
 ]
