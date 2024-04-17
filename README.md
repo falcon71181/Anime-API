@@ -1,6 +1,6 @@
 # ⚡Anime-API⚡
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=ts,express,nodejs" />
+  <img src="https://skillicons.dev/icons?i=ts,express,nodejs,docker" />
   <br/>
   <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-rouge.vercel.app</kbd></a>
 </p>

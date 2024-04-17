@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "npx nodemon",
-    "start": "npm run build && node build/server.js",
+    "start": "node ./build/server.js",
     "build": "rimraf ./build && tsc",
     "vercel-build": "echo building"
   },
@@ -25,6 +25,7 @@
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
-    "http-errors": "^2.0.0"
+    "http-errors": "^2.0.0",
+    "typescript": "^5.4.5"
   }
 }
