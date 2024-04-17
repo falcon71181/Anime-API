@@ -8,7 +8,7 @@ import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
-import { extract_new_seasons } from "../../extracters/gogoanime/extracters";
+import { extract_anime_movies } from "../../extracters/gogoanime/extracters";
 import { AnimeMovie } from "../../types/gogoanime/anime";
 
 export const scrapeAnimeMovies = async (
@@ -18,7 +18,7 @@ export const scrapeAnimeMovies = async (
   try {
     let res: AnimeMovie[] = [];
     const mainPage = await axios.get(
-      `${URLs.POPULAR}?page=${page}`,
+      `${URLs.MOVIES}?page=${page}`,
       {
         headers: {
           "User-Agent": USER_AGENT_HEADER,
@@ -33,7 +33,7 @@ export const scrapeAnimeMovies = async (
     const animeMoviesSelectors: SelectorType =
       "div.last_episodes > ul > li";
 
-    res = extract_new_seasons(
+    res = extract_anime_movies(
       $,
       animeMoviesSelectors,
       URLs.BASE,
