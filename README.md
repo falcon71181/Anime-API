@@ -606,8 +606,15 @@ console.log(data);
 #### Endpoint
 
 ```sh
-https://api-anime-rouge.vercel.app/gogoanime/recent-releases
+https://api-anime-rouge.vercel.app/gogoanime/recent-releases?page=${page}
 ```
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
 
 <break>
 
@@ -640,13 +647,21 @@ console.log(data);
 
 <break>
 
-### `GET` GoGoAnime Recent Releases
+### `GET` GoGoAnime New Seasons
 
 #### Endpoint
 
 ```sh
-https://api-anime-rouge.vercel.app/gogoanime/new-seasons
+https://api-anime-rouge.vercel.app/gogoanime/new-seasons?page=${page}
 ```
+
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
 
 <break>
 
@@ -655,6 +670,98 @@ https://api-anime-rouge.vercel.app/gogoanime/new-seasons
 ```javascript
 const resp = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/new-seasons"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "releasedYear": string,
+      "animeUrl": string
+  },
+  {...},
+]
+```
+
+<break>
+
+### `GET` GoGoAnime Popular
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/popular?page=${page}
+```
+
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/popular"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "releasedYear": string,
+      "animeUrl": string
+  },
+  {...},
+]
+```
+
+<break>
+
+
+
+### `GET` GoGoAnime Anime Movies
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/anime-movies?page=${page}
+```
+
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/anime-movies"
 );
 const data = await res.json();
 console.log(data);
