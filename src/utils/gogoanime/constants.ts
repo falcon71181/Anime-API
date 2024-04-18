@@ -1,34 +1,41 @@
 import { isSiteReachable } from "../../lib/isSiteReachable";
+import { websites_collection, AnimeWebsiteConfig } from "../../config/websites";
 
-const USER_AGENT_HEADER =
-  "Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0";
+type GogoAnimeConfig = {
+  "BASE": string,
+  "SEARCH": string,
+  "CATEGORY": string,
+  "MOVIES": string,
+  "POPULAR": string,
+  "NEW_SEASON": string,
+  "SEASONS": string,
+  "AJAX": string,
+}
 
-const ACCEPT_ENCODING_HEADER = "gzip, deflate, br";
+const gogoanime: AnimeWebsiteConfig = websites_collection["GogoAnime"];
 
-const ACCEPT_HEADER =
-  "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8";
-
+// TODO: use while loop find best responsive site or clone site
 // gogoanime3.co
-const URLs_gogoanime3 = {
-  BASE: "https://gogoanime3.co/",
-  SEARCH: "https://gogoanime3.co/search.html",
-  CATEGORY: "https://gogoanime3.co/category/",
-  MOVIES: "https://gogoanime3.co/anime-movies.html",
-  POPULAR: "https://gogoanime3.co/popular.html",
-  NEW_SEASON: "https://gogoanime3.co/new-season.html",
-  SEASONS: "https://gogoanime3.co/sub-category/",
+const websiteObj: GogoAnimeConfig = {
+  BASE: gogoanime.BASE,
+  SEARCH: `${gogoanime.BASE}/search.html`,
+  CATEGORY: `${gogoanime.BASE}/category/`,
+  MOVIES: `${gogoanime.BASE}/anime-movies.html`,
+  POPULAR: `${gogoanime.BASE}/popular.html`,
+  NEW_SEASON: `${gogoanime.BASE}/new-season.html`,
+  SEASONS: `${gogoanime.BASE}/sub-category/`,
   AJAX: "https://ajax.gogocdn.net/ajax",
-};
+}
 
 // You can add SIMILAR SITES here and append if-else condition in URL_fn()
 const URL_fn = async () => {
   try {
-    const reachable = await isSiteReachable(URLs_gogoanime3.BASE);
+    const reachable = await isSiteReachable(gogoanime.BASE);
     if (reachable) {
       // aniwatch.to is not working
-      return URLs_gogoanime3;
+      return websiteObj;
     } else {
-      return URLs_gogoanime3;
+      return websiteObj;
     }
   } catch (error) {
     console.error("Error occurred in both sites:", error);
@@ -36,4 +43,4 @@ const URL_fn = async () => {
   }
 };
 
-export { URL_fn, ACCEPT_HEADER, ACCEPT_ENCODING_HEADER, USER_AGENT_HEADER };
+export { URL_fn };

@@ -1,11 +1,12 @@
 import { Router, type IRouter } from "express";
 import { getRecentReleases, getNewSeasons, getPopularAnimes, getAnimeMovies } from "../../controllers/gogoanime/controllers";
-import { getRoot } from "../../lib/getRoot";
 
 const gogoanime_router: IRouter = Router();
 
 // /gogoanime.
-gogoanime_router.get("/", getRoot); // TODO: make custom gogoanime api docs API
+gogoanime_router.get("/", (_req, res) => {
+  res.redirect("/");
+}); // TODO: make custom gogoanime api docs API
 
 // /gogoanime/recent-releases
 gogoanime_router.get("/recent-releases", getRecentReleases);

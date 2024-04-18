@@ -1,9 +1,7 @@
 import {
   URL_fn,
-  ACCEPT_HEADER,
-  ACCEPT_ENCODING_HEADER,
-  USER_AGENT_HEADER,
 } from "../../utils/gogoanime/constants";
+import { headers } from "../../config/headers";
 import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import type { CheerioAPI, SelectorType } from "cheerio";
@@ -21,9 +19,9 @@ export const scrapeRecentReleases = async (
       `${URLs.AJAX}/page-recent-release.html?page=${page}`,
       {
         headers: {
-          "User-Agent": USER_AGENT_HEADER,
-          "Accept-Encoding": ACCEPT_ENCODING_HEADER,
-          Accept: ACCEPT_HEADER,
+          "User-Agent": headers.USER_AGENT_HEADER,
+          "Accept-Encoding": headers.ACCEPT_ENCODEING_HEADER,
+          Accept: headers.ACCEPT_HEADER,
         },
       },
     );

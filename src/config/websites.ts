@@ -2,7 +2,7 @@ type WebsiteConfig = {
   BASE: string,
 }
 
-type AnimeWebsiteConfig = WebsiteConfig & {
+export type AnimeWebsiteConfig = WebsiteConfig & {
   CLONES?: Record<string, string>,
 }
 
