@@ -3,7 +3,7 @@ type WebsiteConfig = {
 }
 
 export type AnimeWebsiteConfig = WebsiteConfig & {
-  CLONES?: Record<string, string>,
+  CLONES?: Record<string, string[]>,
 }
 
 type Websites = Record<string, AnimeWebsiteConfig>;
@@ -13,7 +13,7 @@ export const websites_collection: Websites = {
   "AniWatch": {
     BASE: "https://aniwatchtv.to",
     CLONES: {
-      "HiAnime": "https://hianime.to",
+      "HiAnime": ["https://hianime.to", "https://hianime.nz", "https://hianime.sx"],
     }
   },
   "GogoAnime": {
