@@ -38,7 +38,7 @@ export const scrapeAboutPage = async (
   };
 
   const res: ScrapedAboutPage = {
-    info: defaultInfo, // need to improve it in future
+    info: defaultInfo, // TODO: need to improve it in future
     moreInfo: {},
     seasons: [],
     relatedAnimes: [],
