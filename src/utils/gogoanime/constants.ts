@@ -13,17 +13,18 @@ type GogoAnimeConfig = {
 }
 
 const gogoanime: AnimeWebsiteConfig = websites_collection["GogoAnime"];
+const gogoanime_base = gogoanime.BASE;
 
 // TODO: use while loop find best responsive site or clone site
 // gogoanime3.co
 const websiteObj: GogoAnimeConfig = {
   BASE: gogoanime.BASE,
-  SEARCH: `${gogoanime.BASE}/search.html`,
-  CATEGORY: `${gogoanime.BASE}/category/`,
-  MOVIES: `${gogoanime.BASE}/anime-movies.html`,
-  POPULAR: `${gogoanime.BASE}/popular.html`,
-  NEW_SEASON: `${gogoanime.BASE}/new-season.html`,
-  SEASONS: `${gogoanime.BASE}/sub-category/`,
+  SEARCH: `${gogoanime_base}/search.html`,
+  CATEGORY: `${gogoanime_base}/category/`,
+  MOVIES: `${gogoanime_base}/anime-movies.html`,
+  POPULAR: `${gogoanime_base}/popular.html`,
+  NEW_SEASON: `${gogoanime_base}/new-season.html`,
+  SEASONS: `${gogoanime_base}/sub-category/`,
   AJAX: "https://ajax.gogocdn.net/ajax",
 }
 

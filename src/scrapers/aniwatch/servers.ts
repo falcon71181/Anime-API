@@ -1,9 +1,7 @@
 import {
   URL_fn,
-  ACCEPT_HEADER,
-  ACCEPT_ENCODING_HEADER,
-  USER_AGENT_HEADER,
 } from "../../utils/aniwatch/constants";
+import { headers } from "../../config/headers";
 import axios, { AxiosError } from "axios";
 import createHttpError, { type HttpError } from "http-errors";
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
@@ -27,10 +25,10 @@ export const scrapeEpisodeServersPage = async (
       `${URLs.AJAX}/v2/episode/servers?episodeId=${epId}`,
       {
         headers: {
-          "User-Agent": USER_AGENT_HEADER,
+          "User-Agent": headers.USER_AGENT_HEADER,
           "X-Requested-With": "XMLHttpRequest",
-          "Accept-Encoding": ACCEPT_ENCODING_HEADER,
-          Accept: ACCEPT_HEADER,
+          "Accept-Encoding": headers.ACCEPT_ENCODEING_HEADER,
+          Accept: headers.ACCEPT_HEADER,
           Referer: new URL(`/watch/${episodeId}`, URLs.BASE).href,
         },
       },
