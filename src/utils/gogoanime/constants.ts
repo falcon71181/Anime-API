@@ -13,31 +13,52 @@ type GogoAnimeConfig = {
 }
 
 const gogoanime: AnimeWebsiteConfig = websites_collection["GogoAnime"];
-const gogoanime_base = gogoanime.BASE;
+// storing initial base link
+let gogoanime_base = gogoanime.BASE;
+// array of clones
+let clones_array: string[] = [];
+clones_array.push(gogoanime_base);
 
-// TODO: use while loop find best responsive site or clone site
-// gogoanime3.co
-const websiteObj: GogoAnimeConfig = {
-  BASE: gogoanime.BASE,
-  SEARCH: `${gogoanime_base}/search.html`,
-  CATEGORY: `${gogoanime_base}/category/`,
-  MOVIES: `${gogoanime_base}/anime-movies.html`,
-  POPULAR: `${gogoanime_base}/popular.html`,
-  NEW_SEASON: `${gogoanime_base}/new-season.html`,
-  SEASONS: `${gogoanime_base}/sub-category/`,
-  AJAX: "https://ajax.gogocdn.net/ajax",
+if (gogoanime.CLONES) {
+  const gogoanime_clones: Record<string, string[]> = gogoanime.CLONES;
+
+  for (const key in gogoanime_clones) {
+    if (Object.prototype.hasOwnProperty.call(gogoanime_clones, key)) {
+      const values: string[] = gogoanime_clones[key];
+      clones_array.push(...values);
+    }
+  }
 }
 
-// You can add SIMILAR SITES here and append if-else condition in URL_fn()
-const URL_fn = async () => {
+// Testing
+// console.log(clones_array);
+
+// make new gogoanimeobj using new gogoanime_base
+const makeGogoAnimeObj = (gogoanime_base: string): GogoAnimeConfig => {
+  // Testing
+  // console.log(gogoanime_base);
+  return {
+    BASE: gogoanime.BASE,
+    SEARCH: `${gogoanime_base}/search.html`,
+    CATEGORY: `${gogoanime_base}/category/`,
+    MOVIES: `${gogoanime_base}/anime-movies.html`,
+    POPULAR: `${gogoanime_base}/popular.html`,
+    NEW_SEASON: `${gogoanime_base}/new-season.html`,
+    SEASONS: `${gogoanime_base}/sub-category/`,
+    AJAX: "https://ajax.gogocdn.net/ajax",
+  }
+}
+
+// return fn
+const URL_fn = async (): Promise<GogoAnimeConfig> => {
   try {
-    const reachable = await isSiteReachable(gogoanime.BASE);
-    if (reachable) {
-      // aniwatch.to is not working
-      return websiteObj;
-    } else {
-      return websiteObj;
+    for (const url of clones_array) {
+      if (await isSiteReachable(url as string)) {
+        gogoanime_base = url;
+        break;
+      }
     }
+    return makeGogoAnimeObj(gogoanime_base as string);
   } catch (error) {
     console.error("Error occurred in both sites:", error);
     throw error; // Rethrow the error to handle it outside
