@@ -1,6 +1,8 @@
 import axios from "axios";
 import type { Video } from "../../types/aniwatch/anime";
-import { USER_AGENT_HEADER } from "../../utils/aniwatch/constants";
+import { headers as HEADERS } from "../../config/headers";
+
+const USER_AGENT_HEADER = HEADERS.USER_AGENT_HEADER;
 
 class StreamSB {
   private serverName = "streamSB";

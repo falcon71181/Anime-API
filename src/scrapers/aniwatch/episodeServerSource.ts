@@ -1,9 +1,7 @@
 import {
   URL_fn,
-  ACCEPT_HEADER,
-  ACCEPT_ENCODING_HEADER,
-  USER_AGENT_HEADER,
 } from "../../utils/aniwatch/constants";
+import { headers } from "../../config/headers";
 import axios, { AxiosError } from "axios";
 import { load, type CheerioAPI } from "cheerio";
 import createHttpError, { type HttpError } from "http-errors";
@@ -35,13 +33,13 @@ export const scrapeAnimeEpisodeSources = async (
           headers: {
             Referer: serverUrl.href,
             watchsb: "streamsb",
-            "User-Agent": USER_AGENT_HEADER,
+            "User-Agent": headers.USER_AGENT_HEADER,
           },
           sources: await new StreamSB().extract(serverUrl, true),
         };
       case Servers.StreamTape:
         return {
-          headers: { Referer: serverUrl.href, "User-Agent": USER_AGENT_HEADER },
+          headers: { Referer: serverUrl.href, "User-Agent": headers.USER_AGENT_HEADER },
           sources: await new StreamTape().extract(serverUrl),
         };
       default: // vidcloud
@@ -61,7 +59,7 @@ export const scrapeAnimeEpisodeSources = async (
       {
         headers: {
           Referer: epId,
-          "User-Agent": USER_AGENT_HEADER,
+          "User-Agent": headers.USER_AGENT_HEADER,
           "X-Requested-With": "XMLHttpRequest",
         },
       },
