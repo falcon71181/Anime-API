@@ -3,7 +3,8 @@ import createHttpError from "http-errors";
 import { type RequestHandler } from "express";
 import { type CheerioAPI, load } from "cheerio";
 import { scrapeAnimeEpisodeSources } from "../../scrapers/aniwatch/scrapers";
-import { URL_fn, USER_AGENT_HEADER } from "../../utils/aniwatch/constants";
+import { URL_fn } from "../../utils/aniwatch/constants";
+import { headers } from "../../config/headers";
 import { type AnimeServers, Servers } from "../../types/aniwatch/anime";
 
 type AnilistID = number | null;
@@ -41,7 +42,7 @@ const getAnimeEpisodeSourcesInfo: RequestHandler = async (req, res) => {
       axios.get(animeURL, {
         headers: {
           Referer: URLs.BASE,
-          "User-Agent": USER_AGENT_HEADER,
+          "User-Agent": headers.USER_AGENT_HEADER,
           "X-Requested-With": "XMLHttpRequest",
         },
       }),
