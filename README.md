@@ -784,6 +784,50 @@ console.log(data);
 
 <break>
 
+### `GET` GoGoAnime Top Airing
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/top-airing?page=${page}
+```
+
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/top-airing"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "latestEp": string,
+      "animeUrl": string,
+      "genres": string[]
+  },
+  {...},
+]
+```
+<break>
 #############################################################################
 
 ## <span>🖱️ For Front End</span>
