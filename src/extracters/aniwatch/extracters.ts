@@ -15,6 +15,7 @@ import { extract_searched_animes } from "./searched_animes";
 import { extract_category_animes } from "./category_animes";
 import { extract_episodes_info } from "./episodes";
 import { extract_server_id } from "./server_id";
+import { extract_atoz_animes } from "./atoz_animes";
 
 export {
   extract_spotlight_animes,
@@ -34,4 +35,5 @@ export {
   extract_category_animes,
   extract_episodes_info,
   extract_server_id,
+  extract_atoz_animes,
 };

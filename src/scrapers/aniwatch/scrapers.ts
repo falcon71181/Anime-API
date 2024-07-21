@@ -5,6 +5,7 @@ import { scrapeCategoryPage } from "./category";
 import { scrapeEpisodesPage } from "./episodes";
 import { scrapeEpisodeServersPage } from "./servers";
 import { scrapeAnimeEpisodeSources } from "./episodeServerSource";
+import { scrapeatozAnimes } from "./atozAnimes";
 
 export {
   scrapeHomePage,
@@ -14,4 +15,5 @@ export {
   scrapeEpisodesPage,
   scrapeEpisodeServersPage,
   scrapeAnimeEpisodeSources,
+  scrapeatozAnimes,
 };

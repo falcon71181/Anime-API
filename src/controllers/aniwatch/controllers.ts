@@ -5,6 +5,7 @@ import { getCategoryPage } from "./categoryController";
 import { getEpisodesInfo } from "./episodesController";
 import { getEpisodeServersInfo } from "./episodeServersController";
 import { getAnimeEpisodeSourcesInfo } from "./episodeServerSourcesController";
+import { getatozPage } from "./atozController";
 
 export {
   getHomePageInfo,
@@ -14,4 +15,5 @@ export {
   getEpisodesInfo,
   getEpisodeServersInfo,
   getAnimeEpisodeSourcesInfo,
+  getatozPage,
 };

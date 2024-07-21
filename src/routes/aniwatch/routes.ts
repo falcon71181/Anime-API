@@ -7,12 +7,16 @@ import {
   getEpisodesInfo,
   getEpisodeServersInfo,
   getAnimeEpisodeSourcesInfo,
+  getatozPage,
 } from "../../controllers/aniwatch/controllers";
 
 const aniwatch_router: IRouter = Router();
 
 // /aniwatch/
 aniwatch_router.get("/", getHomePageInfo);
+
+// aniwatch/az-list
+aniwatch_router.get("/az-list", getatozPage);
 
 // /aniwatch/search?keyword=$(query)&page=$(page)
 aniwatch_router.get("/search", getSearchPageInfo);
