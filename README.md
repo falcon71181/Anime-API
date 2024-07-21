@@ -135,6 +135,47 @@ console.log(data);
 }
 ```
 
+### `GET` AniWatch A to Z List Page
+
+#### Endpoint
+
+```url
+https://api-anime-rouge.vercel.app/aniwatch/az-list?page=${page}
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+
+#### Request sample
+
+```typescript
+const resp = await fetch("https://api-anime-rouge.vercel.app/aniwatch/az-list?page=69");
+const data = await resp.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+        {
+            "id": string,
+            "name": string,
+            "category": string,
+            "img": string,
+            "episodes": {
+                "eps": number,
+                "sub": number,
+                "dub": number
+            }
+        },
+        {...},
+],
+```
 
 ### `GET` Anime About Info
 
