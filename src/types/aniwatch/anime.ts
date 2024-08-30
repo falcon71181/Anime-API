@@ -36,9 +36,6 @@ interface SpotLightAnime extends Anime {
   description: string | null;
 }
 
-type TopAiringAnime = MinimalAnime;
-type TrendingAnime = MinimalAnime;
-
 interface TopUpcomingAnime extends Anime {
   duration: string | null;
   rated: boolean | false;
@@ -189,12 +186,11 @@ export {
   ScrapedEpisodesPage,
   ScrapedEpisodeServer,
   ScrapedAnimeEpisodesSources,
+  MinimalAnime,
   Anime,
   Top10Anime,
   Top10AnimeTimePeriod,
   SpotLightAnime,
-  TrendingAnime,
-  TopAiringAnime,
   TopUpcomingAnime,
   LatestAnimeEpisode,
   AboutAnimeInfo,
