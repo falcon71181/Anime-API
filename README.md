@@ -108,14 +108,40 @@ console.log(data);
     week: [...],
     month: [...]
   },
-  topAiringAnimes: [
-    {
-      id: string,
-      name: string,
-      img: string,
-    },
-    {...},
-  ],
+  featuredAnimes: {
+    topAiringAnimes: [
+        {
+            id: string,
+            name: string,
+            img: string,
+        },
+        {...},
+    ],
+    mostPopularAnimes: [
+        {
+            id: string,
+            name: string,
+            img: string,
+        },
+        {...},
+    ],
+    mostFavoriteAnimes: [
+        {
+            id: string,
+            name: string,
+            img: string,
+        },
+        {...},
+    ],
+    latestCompletedAnimes: [
+        {
+            id: string,
+            name: string,
+            img: string,
+        },
+        {...},
+    ],
+  },
   topUpcomingAnimes: [
     {
       id: string,
