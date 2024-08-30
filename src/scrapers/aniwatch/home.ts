@@ -11,7 +11,7 @@ import {
   extract_spotlight_animes,
   extract_trending_animes,
   extract_latest_episodes,
-  extract_top_airing_animes,
+  extract_featured_animes,
   extract_top_upcoming_animes,
   extract_genre_list,
 } from "../../extracters/aniwatch/extracters";
@@ -32,7 +32,12 @@ export const scrapeHomePage = async (): Promise<
       week: [],
       month: [],
     },
-    topAiringAnimes: [],
+    featuredAnimes: {
+      topAiringAnimes: [],
+      mostPopularAnimes: [],
+      mostFavoriteAnimes: [],
+      latestCompletedAnimes: [],
+    },
     topUpcomingAnimes: [],
     genres: [],
   };
@@ -54,6 +59,12 @@ export const scrapeHomePage = async (): Promise<
       "#main-content .block_area_home:nth-of-type(1) .tab-content .film_list-wrap .flw-item";
     const topAiringSelectors: SelectorType =
       "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
+    const mostPopularSelectors: SelectorType =
+      "#anime-featured .row div:nth-of-type(2) .anif-block-ul ul li";
+    const mostFavoriteSelectors: SelectorType =
+      "#anime-featured .row div:nth-of-type(3) .anif-block-ul ul li";
+    const latestCompletedSelectors: SelectorType =
+      "#anime-featured .row div:nth-of-type(4) .anif-block-ul ul li";
     const topUpcomingSelectors: SelectorType =
       "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
     const spotLightSelectors: SelectorType =
@@ -63,7 +74,12 @@ export const scrapeHomePage = async (): Promise<
 
     res.trendingAnimes = extract_trending_animes($, trendingAnimeSelectors);
     res.latestEpisodes = extract_latest_episodes($, latestEpisodesSelectors);
-    res.topAiringAnimes = extract_top_airing_animes($, topAiringSelectors);
+
+    res.featuredAnimes.topAiringAnimes = extract_featured_animes($, topAiringSelectors);
+    res.featuredAnimes.mostPopularAnimes = extract_featured_animes($, mostPopularSelectors);
+    res.featuredAnimes.mostFavoriteAnimes = extract_featured_animes($, mostFavoriteSelectors);
+    res.featuredAnimes.latestCompletedAnimes = extract_featured_animes($, latestCompletedSelectors);
+
     res.topUpcomingAnimes = extract_top_upcoming_animes(
       $,
       topUpcomingSelectors,

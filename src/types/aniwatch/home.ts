@@ -1,22 +1,26 @@
 import {
+  MinimalAnime,
   Top10Anime,
   SpotLightAnime,
-  TrendingAnime,
-  TopAiringAnime,
   TopUpcomingAnime,
   LatestAnimeEpisode,
 } from "./anime";
 
 export interface ScrapedHomePage {
   spotLightAnimes: SpotLightAnime[];
-  trendingAnimes: TrendingAnime[];
+  trendingAnimes: MinimalAnime[];
   top10Animes: {
     day: Top10Anime[];
     week: Top10Anime[];
     month: Top10Anime[];
   };
   latestEpisodes: LatestAnimeEpisode[];
-  topAiringAnimes: TopAiringAnime[];
+  featuredAnimes: {
+    topAiringAnimes: MinimalAnime[];
+    mostPopularAnimes: MinimalAnime[];
+    mostFavoriteAnimes: MinimalAnime[];
+    latestCompletedAnimes: MinimalAnime[];
+  }
   topUpcomingAnimes: TopUpcomingAnime[];
   genres: string[];
 }

@@ -1,14 +1,14 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
 import { AxiosError } from "axios";
-import { TopAiringAnime } from "../../types/aniwatch/anime";
+import { MinimalAnime } from "../../types/aniwatch/anime";
 
-export const extract_top_airing_animes = (
+export const extract_featured_animes = (
   $: CheerioAPI,
   selectors: SelectorType,
-): TopAiringAnime[] => {
+): MinimalAnime[] => {
   try {
-    const animes: TopAiringAnime[] = [];
+    const animes: MinimalAnime[] = [];
 
     $(selectors).each((_index, element) => {
       const animeID =
@@ -34,10 +34,10 @@ export const extract_top_airing_animes = (
         img: animeIMG,
       });
     });
-    return animes;
+    return animes.slice(0, 5);
   } catch (err) {
     /////////////////////////////////////////////////////////////////////////
-    console.error("Error in extract_top_airing_animes :", err); // for TESTING//
+    console.error("Error in extract_featured_animes :", err); // for TESTING//
     /////////////////////////////////////////////////////////////////////////
 
     if (err instanceof AxiosError) {

@@ -1,14 +1,14 @@
 import type { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
 import { AxiosError } from "axios";
-import { TrendingAnime } from "../../types/aniwatch/anime";
+import { MinimalAnime } from "../../types/aniwatch/anime";
 
 export const extract_trending_animes = (
   $: CheerioAPI,
   selectors: SelectorType,
-): TrendingAnime[] => {
+): MinimalAnime[] => {
   try {
-    const animes: TrendingAnime[] = [];
+    const animes: MinimalAnime[] = [];
 
     $(selectors).each((_index, element) => {
       const animeID =
