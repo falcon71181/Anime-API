@@ -12,6 +12,11 @@ export const extract_about_info = (
     let info: AboutAnimeInfo | undefined;
 
     $(selectors).each((_index, _element) => {
+      let { anime_id, mal_id, anilist_id } = JSON.parse($('#syncData').text());
+      anime_id = parseIntSafe(anime_id);
+      mal_id = parseIntSafe(mal_id);
+      anilist_id = parseIntSafe(anilist_id);
+
       const animeID =
         $(selectors)
           .find(".anisc-detail .film-buttons a.btn-play")
@@ -66,6 +71,9 @@ export const extract_about_info = (
 
       info = {
         id: animeID,
+        mal_id,
+        anime_id,
+        al_id: anilist_id,
         name: animeNAME,
         img: animeIMG,
         rating: animeRATING,
@@ -84,6 +92,9 @@ export const extract_about_info = (
     if (info === undefined) {
       info = {
         id: null,
+        mal_id: null,
+        al_id: null,
+        anime_id: null,
         name: null,
         img: null,
         rating: null,
@@ -115,3 +126,13 @@ export const extract_about_info = (
     }
   }
 };
+
+function parseIntSafe(str: string): number | null {
+  const parsedId = parseInt(str, 10);
+
+  if (!isNaN(parsedId)) {
+    return parsedId;
+  } else {
+    return null;
+  }
+}
