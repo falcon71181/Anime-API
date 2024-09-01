@@ -44,6 +44,9 @@ interface TopUpcomingAnime extends Anime {
 type LatestAnimeEpisode = TopUpcomingAnime;
 
 interface AboutAnimeInfo extends Anime {
+  anime_id: number | null,
+  mal_id: number | null,
+  al_id: number | null,
   rating: string | null;
   category: string | null;
   duration: string | null;

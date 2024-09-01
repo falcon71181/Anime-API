@@ -21,6 +21,9 @@ export const scrapeAboutPage = async (
 ): Promise<ScrapedAboutPage | HttpError> => {
   const defaultInfo: AboutAnimeInfo = {
     id: null,
+    mal_id: null,
+    al_id: null,
+    anime_id: null,
     name: "UNKNOWN ANIME",
     img: null,
     rating: null,
