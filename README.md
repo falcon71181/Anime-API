@@ -236,6 +236,9 @@ console.log(data);
 {
   "info": {
         "id": string,
+        "anime_id": number,
+        "mal_id": number,
+        "al_id": number,
         "name": string,
         "img": string,
         "rating": string,
