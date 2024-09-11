@@ -31,9 +31,9 @@ class StreamSB {
     const res = await axios
       .get(
         `${isAlt ? this.host2 : this.host}/${this.PAYLOAD(
-          Buffer.from(bytes).toString("hex"),
+          Buffer.from(bytes).toString("hex")
         )}`,
-        { headers },
+        { headers }
       )
       .catch(() => null);
 

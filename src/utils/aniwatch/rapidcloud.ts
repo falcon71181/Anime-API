@@ -6,8 +6,10 @@ import {
 } from "../../utils/aniwatch/serverSubString";
 import type { Video, Subtitle, Intro } from "../../types/aniwatch/anime";
 
-type extractReturn = { sources: Video[]; subtitles: Subtitle[] };
-const d_keys = ["cinemaxhq/keys/e1/key", "Claudemirovsky/keys/e1/key"];
+type extractReturn = {
+  sources: Video[];
+  subtitles: Subtitle[];
+};
 
 // https://megacloud.tv/embed-2/e-1/IxJ7GjGVCyml?k=1
 class RapidCloud {
@@ -19,7 +21,7 @@ class RapidCloud {
   private readonly host = "https://rapid-cloud.co";
 
   async extract(videoUrl: URL): Promise<extractReturn> {
-    const result: extractReturn & { intro?: Intro } = {
+    const result: extractReturn & { intro?: Intro; outro?: Intro } = {
       sources: [],
       subtitles: [],
     };
@@ -36,25 +38,29 @@ class RapidCloud {
 
       res = await axios.get(
         `https://${videoUrl.hostname}/embed-2/ajax/e-1/getSources?id=${id}`,
-        options,
+        options
       );
 
       let {
-        data: { sources, tracks, intro, encrypted },
+        data: { sources, tracks, intro, outro, encrypted },
       } = res;
 
       let decryptKey = await (
-        await axios.get(`https://raw.githubusercontent.com/${d_keys[1]}`)
+        await axios.get(
+          "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key"
+        )
       ).data;
 
       decryptKey = substringBefore(
         substringAfter(decryptKey, '"blob-code blob-code-inner js-file-line">'),
-        "</td>",
+        "</td>"
       );
 
       if (!decryptKey) {
         decryptKey = await (
-          await axios.get(`https://raw.githubusercontent.com/${d_keys[1]}`)
+          await axios.get(
+            "https://raw.githubusercontent.com/cinemaxhq/keys/e1/key"
+          )
         ).data;
       }
 
@@ -105,13 +111,11 @@ class RapidCloud {
             .split("\n")
             .filter(
               (line: string) =>
-                line.includes(".m3u8") && line.includes("RESOLUTION="),
+                line.includes(".m3u8") && line.includes("RESOLUTION=")
             );
 
           const secondHalf = m3u8data.map((line: string) =>
-            line
-              .match(/RESOLUTION=.*,(C)|URI=.*/g)
-              ?.map((s) => s.split("=")[1]),
+            line.match(/RESOLUTION=.*,(C)|URI=.*/g)?.map((s) => s.split("=")[1])
           );
 
           const TdArray = secondHalf.map((s: string[]) => {
@@ -125,7 +129,7 @@ class RapidCloud {
             this.sources.push({
               url: `${source.file?.split("master.m3u8")[0]}${f2.replace(
                 "iframes",
-                "index",
+                "index"
               )}`,
               quality: f1.split("x")[1] + "p",
               isM3U8: f2.includes(".m3u8"),
@@ -133,13 +137,12 @@ class RapidCloud {
           }
           result.sources.push(...this.sources);
         }
-        if (intro?.end > 1) {
-          result.intro = {
-            start: intro.start,
-            end: intro.end,
-          };
-        }
       }
+
+      result.intro =
+        intro?.end > 1 ? { start: intro.start, end: intro.end } : undefined;
+      result.outro =
+        outro?.end > 1 ? { start: outro.start, end: outro.end } : undefined;
 
       result.sources.push({
         url: sources[0].file,
@@ -151,7 +154,7 @@ class RapidCloud {
         .map((s: any) =>
           s.file
             ? { url: s.file, lang: s.label ? s.label : "Thumbnails" }
-            : null,
+            : null
         )
         .filter((s: any) => s);
 
