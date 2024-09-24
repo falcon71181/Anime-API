@@ -1,5 +1,12 @@
 import { Router, type IRouter } from "express";
-import { getRecentReleases, getNewSeasons, getPopularAnimes, getAnimeMovies, getTopAiring } from "../../controllers/gogoanime/controllers";
+import {
+  getRecentReleases,
+  getNewSeasons,
+  getPopularAnimes,
+  getAnimeMovies,
+  getTopAiring,
+} from "../../controllers/gogoanime/controllers";
+import { getSearchPageInfo } from "../../controllers/gogoanime/searchController";
 
 const gogoanime_router: IRouter = Router();
 
@@ -7,6 +14,8 @@ const gogoanime_router: IRouter = Router();
 gogoanime_router.get("/", (_req, res) => {
   res.redirect("/");
 }); // TODO: make custom gogoanime api docs API
+
+gogoanime_router.get("/search", getSearchPageInfo);
 
 // /gogoanime/recent-releases
 gogoanime_router.get("/recent-releases", getRecentReleases);

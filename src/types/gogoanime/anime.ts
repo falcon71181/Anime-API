@@ -16,8 +16,8 @@ interface NewSeason extends Anime {
   animeUrl: string;
 }
 
-interface PopularAnime extends NewSeason { };
-interface AnimeMovie extends NewSeason { };
+interface PopularAnime extends NewSeason {}
+interface AnimeMovie extends NewSeason {}
 interface TopAiring {
   id: string;
   name: string;
@@ -25,6 +25,17 @@ interface TopAiring {
   latestEp: string;
   animeUrl: string;
   genres: string[];
-};
+}
 
-export { RecentRelease, NewSeason, PopularAnime, AnimeMovie, TopAiring };
+interface SearchedAnime extends Anime {
+  releasedYear: string | null;
+}
+
+export {
+  RecentRelease,
+  NewSeason,
+  PopularAnime,
+  AnimeMovie,
+  TopAiring,
+  SearchedAnime,
+};
