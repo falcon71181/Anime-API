@@ -4,6 +4,17 @@ interface Anime {
   img: string | null;
 }
 
+interface AboutAnimeInfo {
+  name: string | null;
+  img: string | null;
+  type: string | null;
+  genre: string[] | null;
+  status: string | null;
+  aired_in: number | null;
+  other_name: string | null;
+  episodes: number | null;
+}
+
 interface RecentRelease extends Anime {
   episodeId: string;
   episodeNo: number;
@@ -38,4 +49,5 @@ export {
   AnimeMovie,
   TopAiring,
   SearchedAnime,
+  AboutAnimeInfo,
 };
