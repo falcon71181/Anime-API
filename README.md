@@ -387,7 +387,7 @@ console.log(data);
 }
 ```
 
-### `GET` Search Anime
+### `GET` Category Anime
 
 #### Endpoint
 
@@ -903,7 +903,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-https://api-anime-rouge.vercel.app/gogo/search?keyword=$(query)&page=$(page)
+https://api-anime-rouge.vercel.app/gogoanime/search?keyword=$(query)&page=$(page)
 ```
 
 #### Query Parameters
@@ -958,6 +958,51 @@ console.log(data);
 }
 ```
 
+
+### `GET` Anime About Info
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/anime/:id
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|   `id`    | string |          The unique Anime ID         |    YES    |  -----  |
+
+> [!NOTE]
+> Anime ID should be In <kbd><b>Kebab Case</b></kbd>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/anime/one-piece"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+``` typescript
+{
+  "id": string,
+  "info": {
+    "name": string,
+    "img": string,
+    "type": string,
+    "genre": string[],
+    "status": string,
+    "aired_in": number,
+    "other_name": string,
+    "episodes": number
+  }
+}
+```
 
 <break>
 #############################################################################
