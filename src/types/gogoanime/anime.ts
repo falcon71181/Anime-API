@@ -1,3 +1,5 @@
+import type { ScrapedHomePage } from "./home";
+
 interface Anime {
   id: string | null;
   name: string | null;
@@ -43,6 +45,7 @@ interface SearchedAnime extends Anime {
 }
 
 export {
+  ScrapedHomePage,
   RecentRelease,
   NewSeason,
   PopularAnime,

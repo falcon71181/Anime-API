@@ -4,6 +4,7 @@ import { extract_popular_animes } from "./popular_animes";
 import { extract_anime_movies } from "./anime_movies";
 import { extract_top_airing } from "./top_airing";
 import { extract_searched_animes } from "./searched_animes";
+import { extract_home_info } from "./extract_home_info";
 
 export {
   extract_latest_episodes,
@@ -12,4 +13,5 @@ export {
   extract_anime_movies,
   extract_top_airing,
   extract_searched_animes,
+  extract_home_info,
 };

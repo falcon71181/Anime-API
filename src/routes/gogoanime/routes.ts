@@ -5,9 +5,10 @@ import {
   getPopularAnimes,
   getAnimeMovies,
   getTopAiring,
+  getHomePageInfo,
+  getAboutPageInfo,
+  getSearchPageInfo,
 } from "../../controllers/gogoanime/controllers";
-import { getSearchPageInfo } from "../../controllers/gogoanime/searchController";
-import { getAboutPageInfo } from "../../controllers/gogoanime/aboutController";
 
 const gogoanime_router: IRouter = Router();
 
@@ -15,6 +16,9 @@ const gogoanime_router: IRouter = Router();
 gogoanime_router.get("/", (_req, res) => {
   res.redirect("/");
 }); // TODO: make custom gogoanime api docs API
+
+// /gogoanime/home
+gogoanime_router.get("/home", getHomePageInfo);
 
 // /gogoanime/search?keyword=${query}&page=${page}
 gogoanime_router.get("/search", getSearchPageInfo);
