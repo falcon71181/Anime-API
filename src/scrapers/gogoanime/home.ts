@@ -26,6 +26,7 @@ export const scrapeHomePage = async (): Promise<
     genres: [],
     recentReleases: [],
     recentlyAddedSeries: [],
+    onGoingSeries: [],
   };
 
   const $: CheerioAPI = load(mainPage.data);
@@ -34,6 +35,8 @@ export const scrapeHomePage = async (): Promise<
     "#load_recent_release > div.last_episodes.loaddub > ul > li";
   const recently_added_series_selectors: SelectorType =
     "#wrapper_bg > section > section.content_left > div.main_body.none > div.added_series_body.final > ul > li";
+  const ongoing_series_selectors: SelectorType =
+    "#scrollbar2 > div.viewport > div > nav > ul > li";
 
   try {
     let recentReleases = extract_recent_released_home(
@@ -44,9 +47,14 @@ export const scrapeHomePage = async (): Promise<
       $,
       recently_added_series_selectors,
     );
+    let onGoingSeries = extract_recently_added_series_home(
+      $,
+      ongoing_series_selectors,
+    );
 
     res.recentReleases = recentReleases;
     res.recentlyAddedSeries = recentlyAddedSeries;
+    res.onGoingSeries = onGoingSeries;
 
     $("nav.menu_series.genre.right > ul > li").each((_index, element) => {
       const genre = $(element).find("a");
