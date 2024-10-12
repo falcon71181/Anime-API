@@ -31,10 +31,7 @@ interface NewSeason extends Anime {
 
 interface PopularAnime extends NewSeason {}
 interface AnimeMovie extends NewSeason {}
-interface TopAiring {
-  id: string;
-  name: string;
-  img: string;
+interface TopAiring extends Anime {
   latestEp: string;
   animeUrl: string;
   genres: string[];
@@ -44,9 +41,10 @@ interface SearchedAnime extends Anime {
   releasedYear: string | null;
 }
 
-export {
+export type {
   ScrapedHomePage,
   RecentRelease,
+  Anime,
   NewSeason,
   PopularAnime,
   AnimeMovie,

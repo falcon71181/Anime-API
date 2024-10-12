@@ -1,26 +1,14 @@
 import { AxiosError } from "axios";
 import { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError from "http-errors";
-import type {
-  ScrapedHomePage,
-  RecentRelease,
-} from "../../types/gogoanime/anime";
+import type { RecentRelease } from "../../types/gogoanime/anime";
 
-export const extract_home_info = (
+export const extract_recent_released_home = (
   $: CheerioAPI,
   selectors: SelectorType,
-): ScrapedHomePage => {
+): RecentRelease[] => {
   try {
     let recentReleases: RecentRelease[] = [];
-    const genres: string[] = [];
-
-    $("nav.menu_series.genre.right > ul > li").each((_index, element) => {
-      const genre = $(element).find("a");
-      const href = genre.attr("href");
-      if (href) {
-        genres.push(href.replace("/genre/", ""));
-      }
-    });
 
     $(selectors).each((_index, _element) => {
       const animeNAME =
@@ -57,15 +45,10 @@ export const extract_home_info = (
       recentReleases.push(anime);
     });
 
-    let res: ScrapedHomePage = {
-      genres: genres,
-      recentReleases: recentReleases,
-    };
-
-    return res;
+    return recentReleases;
   } catch (err) {
     ///////////////////////////////////////////////////////////////////
-    console.error("Error in extract_home_info :", err); // for TESTING//
+    console.error("Error in extract_recent_released_home :", err); // for TESTING//
     ///////////////////////////////////////////////////////////////////
 
     if (err instanceof AxiosError) {
