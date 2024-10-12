@@ -673,6 +673,59 @@ console.log(data);
 
 ### `GET` GoGoAnime Recent Releases
 
+
+### `GET` GoGoAnime Home
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/home
+```
+
+#### Request sample
+
+```javascript
+const resp = await fetch("https://api-anime-rouge.vercel.app/gogoanime/home");
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  "genres": string[],
+  "recentReleases": [
+      {
+          "id": string,
+          "name": string,
+          "img": string,
+          "episodeId": string,
+          "episodeNo": number,
+          "subOrDub": "SUB" | "DUB",
+          "episodeUrl": string,
+      },
+      {...},
+  ],
+  "recentlyAddedSeries": [
+      {
+          "id": string,
+          "name": string,
+          "img": string,
+      },
+      {...},
+  ],
+  "onGoingSeries": [
+      {
+          "id": string,
+          "name": string,
+          "img": string,
+      },
+      {...},
+  ],
+]
+```
+
 #### Endpoint
 
 ```sh
