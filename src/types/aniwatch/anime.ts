@@ -44,9 +44,9 @@ interface TopUpcomingAnime extends Anime {
 type LatestAnimeEpisode = TopUpcomingAnime;
 
 interface AboutAnimeInfo extends Anime {
-  anime_id: number | null,
-  mal_id: number | null,
-  al_id: number | null,
+  anime_id: number | null;
+  mal_id: number | null;
+  al_id: number | null;
   rating: string | null;
   category: string | null;
   duration: string | null;
@@ -101,6 +101,71 @@ interface Subtitle {
 interface Intro {
   start: number;
   end: number;
+}
+
+interface ProxyConfig {
+  /**
+   * The proxy URL
+   * @example https://proxy.com
+   **/
+  url: string | string[];
+  /**
+   * X-API-Key header value (if any)
+   **/
+  key?: string;
+  /**
+   * The proxy rotation interval in milliseconds. (default: 5000)
+   */
+  rotateInterval?: number;
+}
+
+interface IVideo {
+  /**
+   * The **MAIN URL** of the video provider that should take you to the video
+   */
+  url: string;
+  /**
+   * The Quality of the video should include the `p` suffix
+   */
+  quality?: string;
+  /**
+   * make sure to set this to `true` if the video is hls
+   */
+  isM3U8?: boolean;
+  /**
+   * set this to `true` if the video is dash (mpd)
+   */
+  isDASH?: boolean;
+  /**
+   * size of the video in **bytes**
+   */
+  size?: number;
+  [x: string]: unknown; // other fields
+}
+
+interface ISubtitle {
+  /**
+   * The id of the subtitle. **not** required
+   */
+  id?: string;
+  /**
+   * The **url** that should take you to the subtitle **directly**.
+   */
+  url: string;
+  /**
+   * The language of the subtitle
+   */
+  lang: string;
+}
+
+interface ISource {
+  headers?: { [k: string]: string };
+  intro?: Intro;
+  outro?: Intro;
+  subtitles?: ISubtitle[];
+  sources: IVideo[];
+  download?: string;
+  embedURL?: string;
 }
 
 type AnimeServers =
@@ -214,4 +279,8 @@ export {
   Video,
   Subtitle,
   Intro,
+  ProxyConfig,
+  IVideo,
+  ISource,
+  ISubtitle,
 };
