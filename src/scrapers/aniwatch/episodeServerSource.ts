@@ -1,6 +1,4 @@
-import {
-  URL_fn,
-} from "../../utils/aniwatch/constants";
+import { URL_fn } from "../../utils/aniwatch/constants";
 import { headers } from "../../config/headers";
 import axios, { AxiosError } from "axios";
 import { load, type CheerioAPI } from "cheerio";
@@ -23,6 +21,7 @@ export const scrapeAnimeEpisodeSources = async (
   if (episodeId.startsWith("http")) {
     const serverUrl = new URL(episodeId);
     switch (server) {
+      case Servers.MegaCloud:
       case Servers.VidStreaming:
       case Servers.VidCloud:
         return {
@@ -39,10 +38,13 @@ export const scrapeAnimeEpisodeSources = async (
         };
       case Servers.StreamTape:
         return {
-          headers: { Referer: serverUrl.href, "User-Agent": headers.USER_AGENT_HEADER },
+          headers: {
+            Referer: serverUrl.href,
+            "User-Agent": headers.USER_AGENT_HEADER,
+          },
           sources: await new StreamTape().extract(serverUrl),
         };
-      default: // vidcloud
+      default:
         return {
           headers: { Referer: serverUrl.href },
           ...(await new RapidCloud().extract(serverUrl)),
@@ -67,36 +69,43 @@ export const scrapeAnimeEpisodeSources = async (
 
     const $: CheerioAPI = load(resp.data.html);
 
+    /**
+     * vidStreaming -> 4
+     * rapidcloud, vidcloud, megacloud  -> 1
+     * streamsb -> 5
+     * streamtape -> 3
+     */
     let serverId: string | null = null;
-
     try {
       console.log("THE SERVER: ", server);
-
       switch (server) {
-        case Servers.VidCloud: {
+        case Servers.MegaCloud:
+        case Servers.VidCloud:
           serverId = extract_server_id($, 1, category);
           console.log("SERVER_ID: ", serverId);
+
+          // zoro's vidcloud server is rapidcloud
           if (!serverId) throw new Error("RapidCloud not found");
           break;
-        }
-        case Servers.VidStreaming: {
+        case Servers.VidStreaming:
           serverId = extract_server_id($, 4, category);
           console.log("SERVER_ID: ", serverId);
-          if (!serverId) throw new Error("VidStreaming not found");
+
+          // zoro's vidcloud server is rapidcloud
+          if (!serverId) throw new Error("vidtreaming not found");
           break;
-        }
-        case Servers.StreamSB: {
+        case Servers.StreamSB:
           serverId = extract_server_id($, 5, category);
           console.log("SERVER_ID: ", serverId);
+
           if (!serverId) throw new Error("StreamSB not found");
           break;
-        }
-        case Servers.StreamTape: {
+        case Servers.StreamTape:
           serverId = extract_server_id($, 3, category);
           console.log("SERVER_ID: ", serverId);
+
           if (!serverId) throw new Error("StreamTape not found");
           break;
-        }
       }
     } catch (err) {
       throw createHttpError.NotFound(
