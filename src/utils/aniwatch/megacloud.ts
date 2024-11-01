@@ -1,65 +1,51 @@
-import axios from "axios";
 import crypto from "crypto";
-import createHttpError from "http-errors";
-
-// https://megacloud.tv/embed-2/e-1/dBqCr5BcOhnD?k=1
+import { IVideo, ISubtitle, Intro } from "../../types/aniwatch/anime";
+import VideoExtractor from "./video-extractor";
 
 const megacloud = {
   script: "https://megacloud.tv/js/player/a/prod/e1-player.min.js?v=",
   sources: "https://megacloud.tv/embed-2/ajax/e-1/getSources?id=",
 } as const;
 
-type track = {
+type tracks = {
   file: string;
   kind: string;
   label?: string;
   default?: boolean;
 };
 
-type intro_outro = {
-  start: number;
-  end: number;
-};
-
-type unencryptedSrc = {
+type unencrypSources = {
   file: string;
   type: string;
 };
 
-type extractedSrc = {
-  sources: string | unencryptedSrc[];
-  tracks: track[];
+type apiFormat = {
+  sources: string | unencrypSources[];
+  tracks: tracks[];
   encrypted: boolean;
-  intro: intro_outro;
-  outro: intro_outro;
+  intro: Intro;
+  outro: Intro;
   server: number;
 };
 
-interface ExtractedData
-  extends Pick<extractedSrc, "intro" | "outro" | "tracks"> {
-  sources: { url: string; type: string }[];
-}
-
-class MegaCloud {
-  private serverName = "megacloud";
+class MegaCloud extends VideoExtractor {
+  protected override serverName = "MegaCloud";
+  protected override sources: IVideo[] = [];
 
   async extract(videoUrl: URL) {
     try {
-      const extractedData: ExtractedData = {
-        tracks: [],
-        intro: {
-          start: 0,
-          end: 0,
-        },
-        outro: {
-          start: 0,
-          end: 0,
-        },
+      const result: {
+        sources: IVideo[];
+        subtitles: ISubtitle[];
+        intro?: Intro;
+        outro?: Intro;
+      } = {
         sources: [],
+        subtitles: [],
       };
 
       const videoId = videoUrl?.href?.split("/")?.pop()?.split("?")[0];
-      const { data: srcsData } = await axios.get<extractedSrc>(
+      const { data: srcsData } = await this.client.get<apiFormat>(
         megacloud.sources.concat(videoId || ""),
         {
           headers: {
@@ -69,65 +55,60 @@ class MegaCloud {
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
             Referer: videoUrl.href,
           },
-        }
+        },
       );
       if (!srcsData) {
-        throw createHttpError.NotFound("Url may have an invalid video id");
+        throw new Error("Url may have an invalid video id");
       }
-
-      // console.log(JSON.stringify(srcsData, null, 2));
 
       const encryptedString = srcsData.sources;
       if (!srcsData.encrypted && Array.isArray(encryptedString)) {
-        extractedData.intro = srcsData.intro;
-        extractedData.outro = srcsData.outro;
-        extractedData.tracks = srcsData.tracks;
-        extractedData.sources = encryptedString.map((s) => ({
+        result.intro = srcsData.intro;
+        result.outro = srcsData.outro;
+        result.subtitles = srcsData.tracks.map((s: any) => ({
+          url: s.file,
+          lang: s.label ? s.label : "Thumbnails",
+        }));
+        result.sources = encryptedString.map((s) => ({
           url: s.file,
           type: s.type,
+          isM3U8: s.file.includes(".m3u8"),
         }));
-
-        return extractedData;
+        return result;
       }
 
-      let text: string;
-      const { data } = await axios.get(
-        megacloud.script.concat(Date.now().toString())
+      const { data } = await this.client.get(
+        megacloud.script.concat(Date.now().toString()),
       );
 
-      text = data;
-      if (!text) {
-        throw createHttpError.InternalServerError(
-          "Couldn't fetch script to decrypt resource"
-        );
-      }
+      const text = data;
+      if (!text) throw new Error("Couldn't fetch script to decrypt resource");
 
       const vars = this.extractVariables(text);
-      if (!vars.length) {
-        throw new Error("Can't find variables. Perhaps the extractor is outdated.");
-      }
-
       const { secret, encryptedSource } = this.getSecret(
         encryptedString as string,
-        vars
+        vars,
       );
       const decrypted = this.decrypt(encryptedSource, secret);
       try {
         const sources = JSON.parse(decrypted);
-        extractedData.intro = srcsData.intro;
-        extractedData.outro = srcsData.outro;
-        extractedData.tracks = srcsData.tracks;
-        extractedData.sources = sources.map((s: any) => ({
+        result.intro = srcsData.intro;
+        result.outro = srcsData.outro;
+        result.subtitles = srcsData.tracks.map((s: any) => ({
+          url: s.file,
+          lang: s.label ? s.label : "Thumbnails",
+        }));
+        result.sources = sources.map((s: any) => ({
           url: s.file,
           type: s.type,
+          isM3U8: s.file.includes(".m3u8"),
         }));
 
-        return extractedData;
+        return result;
       } catch (error) {
-        throw createHttpError.InternalServerError("Failed to decrypt resource");
+        throw new Error("Failed to decrypt resource");
       }
     } catch (err) {
-      // console.log(err);
       throw err;
     }
   }
@@ -204,7 +185,7 @@ class MegaCloud {
       decipher.update(
         contents as any,
         typeof contents === "string" ? "base64" : undefined,
-        "utf8"
+        "utf8",
       ) + decipher.final();
 
     return decrypted;
@@ -220,7 +201,6 @@ class MegaCloud {
       throw new Error("Failed to match the key");
     }
   }
-
 }
 
 export default MegaCloud;
