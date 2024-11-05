@@ -14,7 +14,7 @@ import { type ScrapedAnimeEpisodesSources } from "../../types/aniwatch/anime";
 export const scrapeAnimeEpisodeSources = async (
   episodeId: string,
   server: AnimeServers = Servers.VidStreaming,
-  category: "sub" | "dub" = "sub",
+  category: "sub" | "dub" | "raw" = "sub",
 ): Promise<ScrapedAnimeEpisodesSources | HttpError> => {
   const URLs = await URL_fn();
 

@@ -83,6 +83,7 @@ interface SubEpisode {
 }
 
 type DubEpisode = SubEpisode;
+type RawEpisode = SubEpisode;
 
 interface Video {
   url: string;
@@ -274,6 +275,7 @@ export {
   Episode,
   SubEpisode,
   DubEpisode,
+  RawEpisode,
   AnimeServers,
   Servers,
   Video,
