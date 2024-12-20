@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": [
-      "es6"
+      "es6",
+      "dom"
     ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
     "module": "commonjs" /* Specify what module code is generated. */,
     "rootDir": "src" /* Specify the root folder within your source files. */,
@@ -13,6 +14,14 @@
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true /* Enable all strict type-checking options. */,
     "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "noEmit": true,
+    "allowJs": true,
+    "declaration": true,
+    "isolatedModules": false,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   }
 }

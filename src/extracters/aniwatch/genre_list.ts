@@ -9,7 +9,7 @@ export const extract_genre_list = (
   try {
     const genres: string[] = [];
 
-    $(selectors).each((index, element) => {
+    $(selectors).each((_index, element) => {
       genres.push(`${$(element)?.text()?.trim() || null}`);
     });
     return genres;

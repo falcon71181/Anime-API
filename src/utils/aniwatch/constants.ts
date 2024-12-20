@@ -2,12 +2,12 @@ import { isSiteReachable } from "../../lib/isSiteReachable";
 import { websites_collection, AnimeWebsiteConfig } from "../../config/websites";
 
 type AniWatchConfig = {
-  BASE: string,
-  HOME: string,
-  SEARCH: string,
-  GENRE: string,
-  AJAX: string,
-}
+  BASE: string;
+  HOME: string;
+  SEARCH: string;
+  GENRE: string;
+  AJAX: string;
+};
 
 const aniwatch: AnimeWebsiteConfig = websites_collection["AniWatch"];
 // storing initial base link
@@ -40,8 +40,10 @@ const makeAniWatchObj = (aniwatch_base: string): AniWatchConfig => {
     SEARCH: `${aniwatch_base}/search`,
     GENRE: `${aniwatch_base}/genre`,
     AJAX: `${aniwatch_base}/ajax`,
-  }
-}
+  };
+};
+
+export const DEFAULT_HIANIME_URL = "https://hianime.to";
 
 // return fn
 const URL_fn = async (): Promise<AniWatchConfig> => {

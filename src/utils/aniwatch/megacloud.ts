@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { IVideo, ISubtitle, Intro } from "../../types/aniwatch/anime";
 import VideoExtractor from "./video-extractor";
+import { getSources } from "./megacloud.getsrcs";
 
 const megacloud = {
   script: "https://megacloud.tv/js/player/a/prod/e1-player.min.js?v=",
@@ -14,18 +15,22 @@ type tracks = {
   default?: boolean;
 };
 
-type unencrypSources = {
+export type unencrypSources = {
   file: string;
   type: string;
 };
 
-type apiFormat = {
+export type apiFormat = {
   sources: string | unencrypSources[];
   tracks: tracks[];
   encrypted: boolean;
   intro: Intro;
   outro: Intro;
   server: number;
+};
+
+type ExtractedData = Pick<apiFormat, "intro" | "outro" | "tracks"> & {
+  sources: { url: string; type: string }[];
 };
 
 class MegaCloud extends VideoExtractor {
@@ -199,6 +204,43 @@ class MegaCloud extends VideoExtractor {
       return match[1].replace(/^0x/, "");
     } else {
       throw new Error("Failed to match the key");
+    }
+  }
+
+  // https://megacloud.tv/embed-2/e-1/1hnXq7VzX0Ex?k=1
+  async extract2(embedIframeURL: URL): Promise<ExtractedData> {
+    try {
+      const extractedData: ExtractedData = {
+        tracks: [],
+        intro: {
+          start: 0,
+          end: 0,
+        },
+        outro: {
+          start: 0,
+          end: 0,
+        },
+        sources: [],
+      };
+
+      const xrax = embedIframeURL.pathname.split("/").pop() || "";
+
+      const resp = await getSources(xrax);
+      if (!resp) return extractedData;
+
+      if (Array.isArray(resp.sources)) {
+        extractedData.sources = resp.sources.map((s) => ({
+          url: s.file,
+          type: s.type,
+        }));
+      }
+      extractedData.intro = resp.intro ? resp.intro : extractedData.intro;
+      extractedData.outro = resp.outro ? resp.outro : extractedData.outro;
+      extractedData.tracks = resp.tracks;
+
+      return extractedData;
+    } catch (err) {
+      throw err;
     }
   }
 }
