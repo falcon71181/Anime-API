@@ -9,9 +9,7 @@ const getatozPage: RequestHandler = async (req, res) => {
     const data = await scrapeatozAnimes(page);
     res.status(200).json(data);
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the A to Z page information." });
   }
 };
 

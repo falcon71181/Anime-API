@@ -13,9 +13,7 @@ const getEpisodesInfo: RequestHandler = async (req, res) => {
     const data = await scrapeEpisodesPage(anime_id);
     res.status(200).json(data);
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the episodes information." });
   }
 };
 

@@ -9,9 +9,7 @@ const getNewSeasons: RequestHandler = async (req, res) => {
     const data = await scrapeNewSeasons(page);
     res.status(200).json(data);
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the new seasons information." });
   }
 };
 
