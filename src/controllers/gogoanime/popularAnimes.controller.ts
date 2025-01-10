@@ -9,9 +9,7 @@ const getPopularAnimes: RequestHandler = async (req, res) => {
     const data = await scrapePopularAnime(page);
     res.status(200).json(data);
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the popular animes information." });
   }
 };
 

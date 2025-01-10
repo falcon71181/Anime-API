@@ -66,9 +66,7 @@ const getAnimeEpisodeSourcesInfo: RequestHandler = async (req, res) => {
       malID,
     });
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the anime episode sources information." });
   }
 };
 

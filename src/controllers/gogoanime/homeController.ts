@@ -6,9 +6,7 @@ const getHomePageInfo: RequestHandler = async (_req, res) => {
     const data = await scrapeHomePage();
     res.status(200).json(data);
   } catch (err) {
-    ////////////////////////////////////
-    console.log(err); // for TESTING//
-    ////////////////////////////////////
+    res.status(500).json({ success: false, message: "An error occurred while fetching the home page information." });
   }
 };
 
