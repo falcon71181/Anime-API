@@ -9,32 +9,31 @@ import {
   getAnimeEpisodeSourcesInfo,
   getatozPage,
 } from "../../controllers/aniwatch/controllers";
-import cacheMiddleware from "../../middlewares/cache";
 
 const aniwatch_router: IRouter = Router();
 
 // /aniwatch/
-aniwatch_router.get("/", cacheMiddleware, getHomePageInfo);
+aniwatch_router.get("/", getHomePageInfo);
 
 // aniwatch/az-list
-aniwatch_router.get("/az-list", cacheMiddleware, getatozPage);
+aniwatch_router.get("/az-list", getatozPage);
 
 // /aniwatch/search?keyword=$(query)&page=$(page)
-aniwatch_router.get("/search", cacheMiddleware, getSearchPageInfo);
+aniwatch_router.get("/search", getSearchPageInfo);
 
 // /aniwatch/anime/:id
-aniwatch_router.get("/anime/:id", cacheMiddleware, getAboutPageInfo);
+aniwatch_router.get("/anime/:id", getAboutPageInfo);
 
 // /aniwatch/episodes/:id
-aniwatch_router.get("/episodes/:id", cacheMiddleware, getEpisodesInfo);
+aniwatch_router.get("/episodes/:id", getEpisodesInfo);
 
 // /aniwatch/servers?id=${id}
-aniwatch_router.get("/servers", cacheMiddleware, getEpisodeServersInfo);
+aniwatch_router.get("/servers", getEpisodeServersInfo);
 
 // /aniwatch/episode-srcs?id=${episodeId}?server=${server}&category=${category (dub or sub)}
-aniwatch_router.get("/episode-srcs", cacheMiddleware, getAnimeEpisodeSourcesInfo);
+aniwatch_router.get("/episode-srcs", getAnimeEpisodeSourcesInfo);
 
 //  aniwatch/:category?page=${page}
-aniwatch_router.get("/:category", cacheMiddleware, getCategoryPage);
+aniwatch_router.get("/:category", getCategoryPage);
 
 export default aniwatch_router;
