@@ -10,6 +10,13 @@ Check it out at <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-roug
 
 <break>
 
+### Deploy this project to Vercel
+
+Click the button below to deploy this project to your Vercel account:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/falcon71181/Anime-API)
+
+
 ## ⚡ Web Scraping Status
 
 Anime Websites  |    STATUS
