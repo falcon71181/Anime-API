@@ -10,6 +10,30 @@ Check it out at <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-roug
 
 <break>
 
+>[!IMPORTANT]
+>Local Caching is implemented
+
+| Routes                                                   | Caching Duration      |
+|---------------------------------------------------------|-----------------------|
+| `/aniwatch/`                                            | 1 day (3600 * 24)     |
+| `/aniwatch/az-list?page=${page}`                        | 1 day (3600 * 24)     |
+| `/aniwatch/search?keyword=$(query)&page=${page}`         | 1 hour (3600)         |
+| `/aniwatch/anime/:id`                                   | 1 month (3600 * 24 * 31) |
+| `/aniwatch/episodes/:id`                                | 1 day (3600 * 24)     |
+| `/aniwatch/servers?id=${id}`                             | 1 day (3600 * 24)    |
+| `/aniwatch/episode-srcs?id=${episodeId}?server=${server}&category=${category}` | 30 minutes (1800)     |
+| `/aniwatch/:category?page=${page}`                      | 1 day (3600 * 24)     |
+| `/gogoanime/home`                                       | 1 day (3600 * 24)     |
+| `/gogoanime/search?keyword=${query}&page=${page}`        | 1 hour (3600)         |
+| `/gogoanime/anime/:id`                                  | 1 day (3600 * 24)     |
+| `/gogoanime/recent-releases?page=${pageNo}`              | 1 month (3600 * 24 * 31) |
+| `/gogoanime/new-seasons?page=${pageNo}`                  | 1 day (3600 * 24)     |
+| `/gogoanime/popular?page=${pageNo}`                      | 1 day (3600 * 24)     |
+| `/gogoanime/completed?page=${pageNo}`                    | 1 day (3600 * 24)     |
+| `/gogoanime/anime-movies?page=${pageNo}`                 | 1 day (3600 * 24)     |
+| `/gogoanime/top-airing?page=${pageNo}`                   | 1 day (3600 * 24)     |
+
+
 ### Deploy this project to Vercel
 
 Click the button below to deploy this project to your Vercel account:
@@ -953,6 +977,49 @@ console.log(data);
       "latestEp": string,
       "animeUrl": string,
       "genres": string[]
+  },
+  {...},
+]
+```
+
+### `GET` GoGoAnime Completed Animes
+
+#### Endpoint
+
+```sh
+https://api-anime-rouge.vercel.app/gogoanime/completed?page=${page}
+```
+
+<break>
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|  `page`   | number |        Page No. of Search Page       |    YES    |    1    |
+
+<break>
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://api-anime-rouge.vercel.app/gogoanime/completed"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```typescript
+[
+  {
+      "id": string,
+      "name": string,
+      "img": string,
+      "latestEp": string,
+      "animeUrl": string
   },
   {...},
 ]
