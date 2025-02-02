@@ -10,6 +10,7 @@ import {
   getAboutPageInfo,
   getSearchPageInfo,
 } from "../../controllers/gogoanime/controllers";
+import { cacheManager } from "../../middlewares/cache";
 
 const gogoanime_router: IRouter = Router();
 
@@ -19,30 +20,79 @@ gogoanime_router.get("/", (_req, res) => {
 }); // TODO: make custom gogoanime api docs API
 
 // /gogoanime/home
-gogoanime_router.get("/home", getHomePageInfo);
+gogoanime_router.get("/home", cacheManager.middleware(), getHomePageInfo);
 
 // /gogoanime/search?keyword=${query}&page=${page}
-gogoanime_router.get("/search", getSearchPageInfo);
+gogoanime_router.get(
+  "/search",
+  cacheManager.middleware({
+    duration: 3600, // 1 hour cache
+    keyParams: ["keyword", "page"],
+  }),
+  getSearchPageInfo,
+);
 
 // /gogoanime/anime/:id
-gogoanime_router.get("/anime/:id", getAboutPageInfo);
+gogoanime_router.get("/anime/:id", cacheManager.middleware(), getAboutPageInfo);
 
-// /gogoanime/recent-releases
-gogoanime_router.get("/recent-releases", getRecentReleases);
+// /gogoanime/recent-releases?page=${pageNo}
+gogoanime_router.get(
+  "/recent-releases",
+  cacheManager.middleware({
+    duration: 3600 * 24 * 31, // 1 month cache
+    keyParams: ["page"],
+  }),
+  getRecentReleases,
+);
 
-// /gogoanime/new-seasons
-gogoanime_router.get("/new-seasons", getNewSeasons);
+// /gogoanime/new-seasons?page=${pageNo}
+gogoanime_router.get(
+  "/new-seasons",
+  cacheManager.middleware({
+    duration: 3600 * 24, // 1 day cache
+    keyParams: ["page"],
+  }),
+  getNewSeasons,
+);
 
-// /gogoanime/popular
-gogoanime_router.get("/popular", getPopularAnimes);
+// /gogoanime/popular?page=${pageNo}
+gogoanime_router.get(
+  "/popular",
+  cacheManager.middleware({
+    duration: 3600 * 24, // 1 day cache
+    keyParams: ["page"],
+  }),
+  getPopularAnimes,
+);
 
-// /gogoanime/completed
-gogoanime_router.get("/completed", getCompletedAnimes);
+// /gogoanime/complete?page=${pageNo} d
+gogoanime_router.get(
+  "/completed",
+  cacheManager.middleware({
+    duration: 3600 * 24, // 1 day cache
+    keyParams: ["page"],
+  }),
+  getCompletedAnimes,
+);
 
-// /gogoanime/anime-movies
-gogoanime_router.get("/anime-movies", getAnimeMovies);
+// /gogoanime/anime-movies?page=${pageNo}
+gogoanime_router.get(
+  "/anime-movies",
+  cacheManager.middleware({
+    duration: 3600 * 24, // 1 day cache
+    keyParams: ["page"],
+  }),
+  getAnimeMovies,
+);
 
-// /gogoanime/top-airing
-gogoanime_router.get("/top-airing", getTopAiring);
+// /gogoanime/top-airing?page=${pageNo}
+gogoanime_router.get(
+  "/top-airing",
+  cacheManager.middleware({
+    duration: 3600 * 24, // 1 day cache
+    keyParams: ["page"],
+  }),
+  getTopAiring,
+);
 
 export default gogoanime_router;
