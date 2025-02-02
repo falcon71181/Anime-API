@@ -1,6 +1,7 @@
 import { getRecentReleases } from "./recentReleases.controller";
 import { getNewSeasons } from "./newSeasons.controller";
 import { getPopularAnimes } from "./popularAnimes.controller";
+import { getCompletedAnimes } from "./completedAnimes.controller";
 import { getAnimeMovies } from "./animeMovies.controller";
 import { getTopAiring } from "./topAiring.controller";
 import { getHomePageInfo } from "./homeController";
@@ -11,6 +12,7 @@ export {
   getRecentReleases,
   getNewSeasons,
   getPopularAnimes,
+  getCompletedAnimes,
   getAnimeMovies,
   getTopAiring,
   getHomePageInfo,

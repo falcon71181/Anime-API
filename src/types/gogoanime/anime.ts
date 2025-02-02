@@ -30,6 +30,7 @@ interface NewSeason extends Anime {
 }
 
 interface PopularAnime extends NewSeason {}
+interface CompletedAnime extends NewSeason {}
 interface AnimeMovie extends NewSeason {}
 interface TopAiring extends Anime {
   latestEp: string;
@@ -47,6 +48,7 @@ export type {
   Anime,
   NewSeason,
   PopularAnime,
+  CompletedAnime,
   AnimeMovie,
   TopAiring,
   SearchedAnime,

@@ -3,6 +3,7 @@ import {
   getRecentReleases,
   getNewSeasons,
   getPopularAnimes,
+  getCompletedAnimes,
   getAnimeMovies,
   getTopAiring,
   getHomePageInfo,
@@ -34,6 +35,9 @@ gogoanime_router.get("/new-seasons", getNewSeasons);
 
 // /gogoanime/popular
 gogoanime_router.get("/popular", getPopularAnimes);
+
+// /gogoanime/completed
+gogoanime_router.get("/completed", getCompletedAnimes);
 
 // /gogoanime/anime-movies
 gogoanime_router.get("/anime-movies", getAnimeMovies);
