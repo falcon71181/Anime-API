@@ -26,7 +26,7 @@ Check it out at <a href="https://api-anime-rouge.vercel.app"><kbd>api-anime-roug
 | `/gogoanime/home`                                       | 1 day (3600 * 24)     |
 | `/gogoanime/search?keyword=${query}&page=${page}`        | 1 hour (3600)         |
 | `/gogoanime/anime/:id`                                  | 1 day (3600 * 24)     |
-| `/gogoanime/recent-releases?page=${pageNo}`              | 1 month (3600 * 24 * 31) |
+| `/gogoanime/recent-releases?page=${pageNo}`              | 1 day (3600 * 24)    |
 | `/gogoanime/new-seasons?page=${pageNo}`                  | 1 day (3600 * 24)     |
 | `/gogoanime/popular?page=${pageNo}`                      | 1 day (3600 * 24)     |
 | `/gogoanime/completed?page=${pageNo}`                    | 1 day (3600 * 24)     |
