@@ -39,7 +39,7 @@ gogoanime_router.get("/anime/:id", cacheManager.middleware(), getAboutPageInfo);
 gogoanime_router.get(
   "/recent-releases",
   cacheManager.middleware({
-    duration: 3600 * 24 * 31, // 1 month cache
+    duration: 3600 * 24, // 1 day cache
     keyParams: ["page"],
   }),
   getRecentReleases,
