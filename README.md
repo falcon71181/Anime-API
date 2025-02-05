@@ -69,9 +69,9 @@ https://api-anime-rouge.vercel.app/aniwatch/
 
 #### Request sample
 
-```typescript
-const resp = await fetch("https://api-anime-rouge.vercel.app/aniwatch/");
-const data = await resp.json();
+```javascript
+const res = await fetch("https://api-anime-rouge.vercel.app/aniwatch/");
+const data = await res.json();
 console.log(data);
 ```
 
@@ -254,7 +254,7 @@ https://api-anime-rouge.vercel.app/aniwatch/anime/:id
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/anime/jujutsu-kaisen-2nd-season-18413"
 );
 const data = await res.json();
@@ -371,7 +371,7 @@ https://api-anime-rouge.vercel.app/aniwatch/search?keyword=$(query)&page=$(page)
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/search?keyword=one+piece&page=1"
 );
 const data = await res.json();
@@ -440,7 +440,7 @@ https://api-anime-rouge.vercel.app/aniwatch/:category?page=$(page)
 > <div>Page No should be a <kbd><b>Number</b></kbd></b></div>
 
 <break>
-  
+
 > [!TIP]
 > Add type to Category - "subbed-anime" | "dubbed-anime" | "tv" | "movie" | "most-popular" | "top-airing" | "ova" | "ona" | "special" | "events";
 
@@ -449,7 +449,7 @@ https://api-anime-rouge.vercel.app/aniwatch/:category?page=$(page)
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/ona?page=1"
 );
 const data = await res.json();
@@ -550,7 +550,7 @@ https://api-anime-rouge.vercel.app/aniwatch/episodes/:id
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/episodes/one-piece-100"
 );
 const data = await res.json();
@@ -593,7 +593,7 @@ https://api-anime-rouge.vercel.app/aniwatch/servers?id=${id}
 > [!NOTE]
 > <div>Episode ID should be In <kbd><b>Kebab Case</b></kbd></div>
 
-important 
+important
 
 > [!NOTE]
 > <div><kbd><b>id</b></kbd> is a combination of AnimeId and EpisodeId</div>
@@ -608,7 +608,7 @@ one-piece-100?ep=84802
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/servers?id=one-piece-100?ep=84802"
 );
 const data = await res.json();
@@ -658,17 +658,17 @@ https://api-anime-rouge.vercel.app/anime/episode-srcs?id={episodeId}&server={ser
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/aniwatch/episode-srcs?id=solo-leveling-18718?ep=120094&server=vidstreaming&category=sub"
 );
-const data = await resp.json();
+const data = await res.json();
 console.log(data);
 ```
 > [!CAUTION]
 > decryption key changes frequently ..., it sometime may not work
 
 <break>
-  
+
 #### Response Schema
 
 ```typescript
@@ -716,7 +716,7 @@ https://api-anime-rouge.vercel.app/gogoanime/home
 #### Request sample
 
 ```javascript
-const resp = await fetch("https://api-anime-rouge.vercel.app/gogoanime/home");
+const res = await fetch("https://api-anime-rouge.vercel.app/gogoanime/home");
 const data = await res.json();
 console.log(data);
 ```
@@ -775,7 +775,7 @@ https://api-anime-rouge.vercel.app/gogoanime/recent-releases?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/recent-releases"
 );
 const data = await res.json();
@@ -822,7 +822,7 @@ https://api-anime-rouge.vercel.app/gogoanime/new-seasons?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/new-seasons"
 );
 const data = await res.json();
@@ -867,7 +867,7 @@ https://api-anime-rouge.vercel.app/gogoanime/popular?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/popular"
 );
 const data = await res.json();
@@ -914,7 +914,7 @@ https://api-anime-rouge.vercel.app/gogoanime/anime-movies?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/anime-movies"
 );
 const data = await res.json();
@@ -959,7 +959,7 @@ https://api-anime-rouge.vercel.app/gogoanime/top-airing?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/top-airing"
 );
 const data = await res.json();
@@ -1003,7 +1003,7 @@ https://api-anime-rouge.vercel.app/gogoanime/completed?page=${page}
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/completed"
 );
 const data = await res.json();
@@ -1045,7 +1045,7 @@ https://api-anime-rouge.vercel.app/gogoanime/search?keyword=$(query)&page=$(page
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/search?keyword=one+piece&page=1"
 );
 const data = await res.json();
@@ -1106,7 +1106,7 @@ https://api-anime-rouge.vercel.app/gogoanime/anime/:id
 #### Request sample
 
 ```javascript
-const resp = await fetch(
+const res = await fetch(
   "https://api-anime-rouge.vercel.app/gogoanime/anime/one-piece"
 );
 const data = await res.json();
@@ -1139,8 +1139,8 @@ console.log(data);
 > [!TIP]
 > Kindly use this repo to make Front End
 
-  - [Eltik / Anify](https://github.com/Eltik/Anify) 
-  
+  - [Eltik / Anify](https://github.com/Eltik/Anify)
+
 #############################################################################
 
 ## <span>🤝 Thanks ❤️</span>
