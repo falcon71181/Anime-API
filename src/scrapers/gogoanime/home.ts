@@ -14,7 +14,7 @@ export const scrapeHomePage = async (): Promise<
 > => {
   const URLs = await URL_fn();
 
-  const mainPage = await axios.get(URLs.BASE, {
+  const mainPage = await axios.get(URLs.HOME, {
     headers: {
       "User-Agent": headers.USER_AGENT_HEADER,
       "Accept-Encoding": headers.ACCEPT_ENCODEING_HEADER,

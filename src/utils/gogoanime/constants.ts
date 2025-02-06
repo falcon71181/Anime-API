@@ -3,6 +3,7 @@ import { websites_collection, AnimeWebsiteConfig } from "../../config/websites";
 
 type GogoAnimeConfig = {
   BASE: string;
+  HOME: string;
   SEARCH: string;
   CATEGORY: string;
   MOVIES: string;
@@ -40,6 +41,7 @@ const makeGogoAnimeObj = (gogoanime_base: string): GogoAnimeConfig => {
   // console.log(gogoanime_base);
   return {
     BASE: gogoanime.BASE,
+    HOME: `${gogoanime_base}/home.html`,
     SEARCH: `${gogoanime_base}/search.html`,
     CATEGORY: `${gogoanime_base}/category/`,
     MOVIES: `${gogoanime_base}/anime-movies.html`,
