@@ -31,7 +31,7 @@ aniwatch_router.get(
   "/search",
   cacheManager.middleware({
     duration: 3600, // 1 hour cache
-    keyParams: ["page"],
+    keyParams: ["keyword", "page"],
   }),
   getSearchPageInfo,
 );
