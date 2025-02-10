@@ -21,6 +21,6 @@ export const websites_collection: Websites = {
     },
   },
   GogoAnime: {
-    BASE: "https://anitaku.bz",
+    BASE: "https://ww24.gogoanimes.fi",
   },
 };
