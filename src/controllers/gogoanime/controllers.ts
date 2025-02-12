@@ -7,6 +7,7 @@ import { getTopAiring } from "./topAiring.controller";
 import { getHomePageInfo } from "./homeController";
 import { getAboutPageInfo } from "./aboutController";
 import { getSearchPageInfo } from "./searchController";
+import { getAnimeEpisodes } from "./anime.episodes";
 
 export {
   getRecentReleases,
@@ -18,4 +19,5 @@ export {
   getHomePageInfo,
   getSearchPageInfo,
   getAboutPageInfo,
+  getAnimeEpisodes
 };

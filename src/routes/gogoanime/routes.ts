@@ -9,6 +9,7 @@ import {
   getHomePageInfo,
   getAboutPageInfo,
   getSearchPageInfo,
+  getAnimeEpisodes,
 } from "../../controllers/gogoanime/controllers";
 import { cacheManager } from "../../middlewares/cache";
 
@@ -94,5 +95,8 @@ gogoanime_router.get(
   }),
   getTopAiring,
 );
+
+// /gogoanime/episodes/:anime-id
+gogoanime_router.get("/episodes/:id", cacheManager.middleware(), getAnimeEpisodes);
 
 export default gogoanime_router;

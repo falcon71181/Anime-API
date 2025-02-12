@@ -6,6 +6,7 @@ import { scrapeAnimeMovies } from "./anime-movies";
 import { scrapeTopAiring } from "./top-airing";
 import { scrapeAboutPage } from "./about";
 import { scrapeHomePage } from "./home";
+import { scrapeEpisodePage } from "./episodes";
 
 export {
   scrapeRecentReleases,
@@ -16,4 +17,5 @@ export {
   scrapeTopAiring,
   scrapeAboutPage,
   scrapeHomePage,
+  scrapeEpisodePage
 };

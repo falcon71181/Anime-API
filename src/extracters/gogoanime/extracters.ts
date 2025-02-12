@@ -7,6 +7,7 @@ import { extract_top_airing } from "./top_airing";
 import { extract_searched_animes } from "./searched_animes";
 import { extract_recent_released_home } from "./extract_recent_released_home";
 import { extract_recently_added_series_home } from "./extract_recently_added_series_home";
+import { extract_episodes } from "./episodes";
 
 export {
   extract_latest_episodes,
@@ -18,4 +19,5 @@ export {
   extract_searched_animes,
   extract_recent_released_home,
   extract_recently_added_series_home,
+  extract_episodes
 };
