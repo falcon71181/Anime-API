@@ -23,6 +23,7 @@ export const scrapeAboutPage = async (
 
   const res: ScrapedAboutPage = {
     id: id,
+    anime_id: "",
     info: defaultInfo,
   };
 
@@ -41,6 +42,9 @@ export const scrapeAboutPage = async (
   const selectors: SelectorType = ".main_body";
 
   try {
+    const animeId =
+      $('input#movie_id.movie_id[type="hidden"]').attr('value') ?? '';
+    res.anime_id = animeId;
     res.info = extract_about_info($, selectors);
     return res;
   } catch (err) {
