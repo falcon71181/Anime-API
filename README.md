@@ -1118,6 +1118,7 @@ console.log(data);
 ``` typescript
 {
   "id": string,
+  "anime_id": string,
   "info": {
     "name": string,
     "img": string,
